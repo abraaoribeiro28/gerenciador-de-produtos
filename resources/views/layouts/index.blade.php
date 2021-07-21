@@ -10,8 +10,8 @@
     <title>@yield('title')</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-  <script src="/maskMoney/src/jquery.maskMoney.js" type="text/javascript"></script>
-    
+    <script src="/maskMoney/src/jquery.maskMoney.js" type="text/javascript"></script>
+    <script src="/js/script.js"></script>
     
 </head>
 <body>
