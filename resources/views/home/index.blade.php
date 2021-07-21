@@ -45,13 +45,13 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="w-50 pl-3">
+                        <a href="/configurations" class="w-50 pl-3">
                             <div class="card border-0 border-bottom-green shadow-lg shadow-hover">
                                 <div class="card-body text-center">
                                     <div class="text-center">
-                                        <img src="https://image.flaticon.com/icons/png/512/546/546410.png" style="width: 70px; margin-bottom: 10px;">
+                                        <img src="https://image.flaticon.com/icons/png/512/900/900797.png" style="width: 70px; margin-bottom: 10px;">
                                     </div>
-                                    Opção vazia
+                                    Configurações
                                 </div>
                             </div>
                         </a>
@@ -64,23 +64,11 @@
     <svg style="pointer-events: none" class="wave" width="100%" height="50px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 75">
         <defs>
             <style>
-                .a {
-                    fill: none;
-                }
-                
-                .b {
-                    clip-path: url(#a);
-                }
-                
-                .c,
-                .d {
-                    fill: #f9f9fc;
-                }
-                
-                .d {
-                    opacity: 0.5;
-                    isolation: isolate;
-                }
+                .a {fill: none;}
+                .b {clip-path: url(#a);}
+                .c,.d {fill: #f9f9fc;}
+                .d {opacity: 0.5;
+                    isolation: isolate;}
             </style>
             <clipPath id="a">
                 <rect class="a" width="1920" height="75"></rect>
