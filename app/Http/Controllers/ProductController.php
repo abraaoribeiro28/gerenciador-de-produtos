@@ -11,7 +11,6 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        
         $categories = Category::all();
         if($request->id == null){
             $products = Product::all();
@@ -63,14 +62,12 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;
-        if($request->archive_id == null){
+        if($request->archive == null){
             $product->archive_id = null;
         }else{
-            $product->archive_id = $request->archive_id;
+            $product->archive_id = $request->archive;
         }
         $product->update();
-
-        // Product::findOrFail($request->id)->update($request->all());
         return redirect('/products')->with('msg', 'Produto modificado com sucesso!');
     }
 
