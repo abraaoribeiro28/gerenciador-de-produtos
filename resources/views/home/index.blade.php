@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', 'Gerenciar produtos')
+@section('title', 'Gerenciador - Home')
 
 @section('content')
 <section class="masthead">
@@ -17,7 +17,7 @@
                             <div class="card border-0 border-bottom-red shadow-lg shadow-hover">
                                 <div class="card-body text-center">
                                     <div class="text-center">
-                                        <img src="https://image.flaticon.com/icons/png/512/1524/1524539.png" style="width: 70px; margin-bottom: 10px;">
+                                        <img src="/images/home/box.png" style="width: 70px; margin-bottom: 10px;">
                                     </div>
                                     Produtos
                                 </div>
@@ -39,7 +39,7 @@
                             <div class="card border-0 border-bottom-yellow shadow-lg shadow-hover">
                                 <div class="card-body text-center">
                                     <div class="text-center">
-                                        <img src="https://image.flaticon.com/icons/png/512/3342/3342137.png" style="width: 70px; margin-bottom: 10px;">
+                                        <img src="/images/home/galeria.png" style="width: 70px; margin-bottom: 10px;">
                                     </div>
                                     Imagens
                                 </div>
@@ -49,7 +49,7 @@
                             <div class="card border-0 border-bottom-green shadow-lg shadow-hover">
                                 <div class="card-body text-center">
                                     <div class="text-center">
-                                        <img src="https://image.flaticon.com/icons/png/512/900/900797.png" style="width: 70px; margin-bottom: 10px;">
+                                        <img src="/images/home/settings.png" style="width: 70px; margin-bottom: 10px;">
                                     </div>
                                     Configurações
                                 </div>
