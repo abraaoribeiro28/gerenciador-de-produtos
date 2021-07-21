@@ -6,7 +6,6 @@
         <div class="borda"></div> 
         <h1 class="title">Editar Produto</h1>
     </div>
-
     <div>
         <form action="/product/edit/{{$product->id}}" method="post">
             @csrf
@@ -15,21 +14,20 @@
                 <div class="col-4" id="imagem-produto">
                     <h6 class="mb-2">IMAGEM</h6>
                     @if($archive == "not-image.png")
-                        <img src="/images/products/not-image.png" id="imagemProduto" alt="imagem default">
+                        <img src="/images/products/not-image.png" id="imagemProdutoEdit" alt="imagem default">
                         <div class="file mt-1">
                             <button type="button" class="btn btn-success select-img" onclick="modalSelectImage()">Selecionar</button>
-                            <button type="button" class="btn btn-danger remove-img" onclick="removeImage()" style="display: none;">Remover image</button>
+                            <button type="button" class="btn btn-danger remove-img" onclick="removeImage('2')" style="display: none;">Remover image</button>
                         </div>
-                        <input type="text" name="archive_id" id="archive_id" style="display: none;">
+                        <input type="text" name="archive" id="archive-edit" style="display: none;">
                     @else
-                        <img src="/images/products/{{$archive->archive}}" id="imagemProduto" alt="Imagem produto">
+                        <img src="/images/products/{{$archive->archive}}" id="imagemProdutoEdit" alt="Imagem produto">
                         <div class="file mt-1">
                             <button type="button" class="btn btn-success select-img" onclick="modalSelectImage()" style="display: none;">Selecionar</button>
-                            <button type="button" class="btn btn-danger remove-img" onclick="removeImage()">Remover image</button>
+                            <button type="button" class="btn btn-danger remove-img" onclick="removeImage('2')">Remover image</button>
                         </div>
-                        <input type="text" name="archive_id" id="archive_id" style="display: none;" value="{{$archive->id}}">
+                        <input type="text" name="archive" id="archive-edit" style="display: none;" value="{{$archive->id}}">
                     @endif
-                    
                     <p class="aviso">
                         Se nenhuma imagem for selecionada, a imagem padrão acima vai ser incluida ao produto!
                     </p>
@@ -69,7 +67,6 @@
                         <textarea class="form-control" name="description" id="description" aria-label="With textarea"  placeholder="Digite aqui...">{{$product->description}}</textarea>
                     </div>
                     <div class="buttons">
-                        {{-- <a href="{{route('products')}}" class="btn btn-secondary">Voltar</a> --}}
                         <input type="submit" class="btn btn-primary" value="Confirmar">
                     </div>
                 </div>
@@ -78,68 +75,27 @@
     </div>
 </section>
 
-
 <div class="modal" id="modalSelectImage" tabindex="-1" style="align-items: center;">
     <div class="modal-dialog w-100" style="max-width: 612px">
       <div class="modal-content" style="max-height: 450px">
         <div class="modal-header">
           <h5 class="modal-title">Selecione uma imagem</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="fecharModalSelectImage()">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="fecharModalSelectImage('2')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" style="overflow-y: auto; max-height: 500px;">
           @forelse ($archives as $archive)
-              <img src="/images/products/{{$archive->archive}}" width="100px" class="m-1" style="cursor: pointer;" onclick="selectImage({{$archive->id}}, '{{$archive->archive}}')">
+              <img src="/images/products/{{$archive->archive}}" width="100px" class="m-1" style="cursor: pointer;" onclick="selectImage({{$archive->id}}, '{{$archive->archive}}', {{2}})">
           @empty
               <p>nenhum arquivo encontrado</p>
           @endforelse
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="fecharModalSelectImage()">Cancelar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="fecharModalSelectImage('2')">Cancelar</button>
           <button type="button" class="btn btn-primary" onclick="confirmImage()">Confirmar</button>
         </div>
       </div>
     </div>
 </div>
-
-
-<script>
-    function modalSelectImage(){
-        const modalSelectImage = document.querySelector('#modalSelectImage');
-        modalSelectImage.style.display = "flex";
-    }
-    function fecharModalSelectImage(){
-        const modalSelectImage = document.querySelector('#modalSelectImage');
-        modalSelectImage.style.display = "none";
-        const inputArchive = document.querySelector('#archive_id');
-        inputArchive.setAttribute('value', '');
-        const imagemProduto = document.querySelector('#imagemProduto');
-        imagemProduto.setAttribute('src', '/images/products/not-image.png')
-    }
-    function confirmImage(){
-        const modalSelectImage = document.querySelector('#modalSelectImage');
-        modalSelectImage.style.display = "none";
-        const btnSelect = document.querySelector('.select-img');
-        btnSelect.style.display = 'none';
-        const btnRemove = document.querySelector('.remove-img');
-        btnRemove.style.display = 'block';
-    }
-    function selectImage(id, image){
-        const inputArchive = document.querySelector('#archive_id');
-        inputArchive.setAttribute('value', id);
-        const imagemProduto = document.querySelector('#imagemProduto');
-        imagemProduto.setAttribute('src', '/images/products/'+image)
-    }
-    function removeImage(){
-        const inputArchive = document.querySelector('#archive_id');
-        inputArchive.setAttribute('value', '');
-        const imagemProduto = document.querySelector('#imagemProduto');
-        imagemProduto.setAttribute('src', '/images/products/not-image.png');
-        const btnSelect = document.querySelector('.select-img');
-        btnSelect.style.display = 'block';
-        const btnRemove = document.querySelector('.remove-img');
-        btnRemove.style.display = 'none';
-    }
-</script>
 @endsection
