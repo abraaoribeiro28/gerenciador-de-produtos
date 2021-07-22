@@ -166,6 +166,14 @@ body{
     }
 }
 
+
+.borda{
+    width: 4px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #2092ed;
+}
+
 /*--- Produtos ---*/
 .section-categories-create,
 .section-categories,
@@ -186,12 +194,7 @@ body{
     padding: 20px 0 5px 0;
 }
 
-.borda{
-    width: 4px;
-    height: 40px;
-    background-color: #ffc107;
-    border-radius: 10px;
-}
+
 .dropdown-menu.filter{
     top: 37px;
     left: -1px;
@@ -203,11 +206,6 @@ body{
 .section-products{
     background-color: rgb(230, 230, 230);
     height: 100vh;
-}
-
-
-.section-products.create .borda{
-    background-color: rgb(40, 167, 69);
 }
 
 .section-products form{
@@ -260,11 +258,6 @@ body{
 
 .form-control{
     color: rgb(0, 0, 0);
-}
-
-/* edit */
-.section-products.edit .borda{
-    background-color: #007bff;
 }
 
 /* Modals */
