@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', 'Gerenciar produtos - produtos')
+@section('title', 'Gerenciador - Imagens')
 
 @section('content')
     <section class="section-products">
@@ -22,7 +22,6 @@
                 <img src="/images/products/{{$archive->archive}}" style="width: 100px">
             @endforeach
         </div>
-
     </section>
 
     <div class="modal" id="modalUpload" tabindex="-1" style="align-items: center;">

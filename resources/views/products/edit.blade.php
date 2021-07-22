@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('title', 'Gerenciador - Editar produto')
+
 @section('content')
 <section class="section-products edit">
     <div class="top">

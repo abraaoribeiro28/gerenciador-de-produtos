@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', 'Gerenciar produtos - categorias')
+@section('title', 'Gerenciador - Editar categoria')
 
 @section('content')
     <section class="section-categories-create">
