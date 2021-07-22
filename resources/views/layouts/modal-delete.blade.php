@@ -1,4 +1,4 @@
-<div class="modal" tabindex="-1">
+<div class="modal" id="modalDelete" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Tem certeza que deseja excluir este produto?</p>
+          <p>Tem certeza que deseja excluir?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>

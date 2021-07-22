@@ -1,21 +1,34 @@
 // Modal de confimar se deseja excluir algo
-function exibirModal(id){
-    const modal = document.querySelector('.modal');
+function exibirModal(id, id_modal, action){
+    const modal = document.querySelector(id_modal);
     const formExcluir = document.querySelector('#form-excluir');
     modal.style.display = 'block';  
-    formExcluir.setAttribute('action', '/product/delete/'+id);
+    formExcluir.setAttribute('action', action+id);
 }
 function fecharModal(){
-    const modal = document.querySelector('.modal');
-    modal.style.display = 'none';
+    const modal = document.querySelectorAll('.modal');
+    modal.forEach(element => element.style.display = 'none');
 }
-
 
 //Fechar alertas de ações realizadas
 function fecharMsg(){
     document.querySelector('.msg').style.display = 'none';
 }
 
+// Archive
+function modalUpload(){
+    const modal = document.querySelector('#modalUpload');
+    modal.style.display = 'flex';
+}
+function closeModal(){
+    const modal = document.querySelector('#modalUpload');
+    modal.style.display = 'none';
+}
+// document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+//     var name = document.getElementById("archive").files[0].name;
+//     var nextSibling = e.target.nextElementSibling
+//     nextSibling.innerText = name
+// })
 
 // Parte que adiciona ou remove imagem dos produtos,
 // tanto no criar produtos quanto no editar produtos

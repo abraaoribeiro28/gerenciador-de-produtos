@@ -63,7 +63,7 @@
                 </th>
                 <th>
                     <a href="/product/edit/{{$product->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
-                    <button class="btn btn-danger" onclick="exibirModal({{$product->id}})"><i class="fa fa-trash"></i> Excluir</button>
+                    <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/product/delete/')"><i class="fa fa-trash"></i> Excluir</button>
                 </th>
             </tr>
           @empty
