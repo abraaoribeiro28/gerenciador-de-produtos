@@ -8,7 +8,10 @@
         <div class="row align-items-center">
             <div class="col-lg-7 py-5">
                 <h1 class="mb-4">Gerenciador de produtos</h1>
-                <h2 class="mb-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero consequuntur odit molestias ut amet tempora a ducimus! Fugiat iste aut, ab sapiente neque deserunt quos incidunt eveniet. Reprehenderit, rem libero!</h2>
+                <h2 class="mb-0">
+                    Um sistema de gerenciamento de produtos e categorias de produtos,
+                    utilizando estrutura autenticação de usuários para acessar o sistema
+                </h2>
             </div>
             <div class="col-lg-5">
                 <div class="py-5 px-4 masthead-cards">

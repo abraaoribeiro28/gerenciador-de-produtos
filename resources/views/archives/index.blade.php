@@ -24,7 +24,7 @@
                 <img src="/images/products/{{$archive->archive}}">
               </div>
               <span class="name-img">{{$archive->archive}}</span>
-              <button class="btn btn-danger btn-exlcuir-archive" onclick="exibirModal({{$archive->id}}, '#modalDelete', '/achive/delete/')">Excluir</button>
+              <button class="btn btn-danger btn-exlcuir-archive" onclick="exibirModal({{$archive->id}}, '#modalDelete', '/archive/delete/')">Excluir</button>
             </div>
             @endforeach
         </div>
@@ -58,5 +58,19 @@
       </div>
   </div>
 
+  @if (Session('msg'))
+    <div class="msg bg-success">
+      <h6 class="m-0">{{Session('msg')}}</h6>
+      <button class="btn" onclick="fecharMsg()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <script>
+      const msg = document.querySelector('.msg');
+      setTimeout(() => {
+        msg.style.display = 'none'
+      }, 3000)
+    </script>
+  @endif
   @include('layouts.modal-delete')
 @endsection

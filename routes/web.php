@@ -35,5 +35,5 @@ Route::put('/category/edit/{id}', [CategoryController::class, 'update'])->name('
 // Archives
 Route::get('/archives', [ArchiveController::class, 'index'])->name('archives')->middleware('auth');
 Route::post('/archives', [ArchiveController::class, 'store'])->name('archives.store')->middleware('auth');
-
+Route::delete('/archive/delete/{id}', [ArchiveController::class, 'destroy']);
 

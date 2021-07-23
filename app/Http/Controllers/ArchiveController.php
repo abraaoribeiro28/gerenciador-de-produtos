@@ -25,6 +25,12 @@ class ArchiveController extends Controller
 
         $archive->save();
 
-        return redirect('/archives');
+        return redirect('/archives')->with('msg', 'Imagem adicionada com sucesso!');;
+    }
+
+    public function destroy($id){
+        $archive = Archive::findOrFail($id);
+        $archive->delete();
+        return redirect('/archives')->with('msg', 'Imagem deletada com sucesso!');
     }
 }

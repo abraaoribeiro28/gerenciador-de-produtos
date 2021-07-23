@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>@yield('title')</title>
-
+    <link rel="sortcut icon" href="https://image.flaticon.com/icons/png/512/5073/5073321.png" type="image/x-icon" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
     <script src="/maskMoney/src/jquery.maskMoney.js" type="text/javascript"></script>
     <script src="/js/script.js"></script>
