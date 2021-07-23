@@ -16,16 +16,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 // Products
-Route::prefix('products')->group(function(){
-    Route::get('/', [ProductController::class, 'index'])->name('products')->middleware('auth');
-    Route::get('category/{id}', [ProductController::class, 'index'])->name('products.filter')->middleware('auth');
-    Route::get('create', [ProductController::class, 'create'])->name('products.create')->middleware('auth');
-    Route::post('create', [ProductController::class, 'store'])->name('products.store')->middleware('auth');
+Route::prefix('products')->middleware('auth')->group(function(){
+    Route::get('/', [ProductController::class, 'index'])->name('products');
+    Route::get('category/{id}', [ProductController::class, 'index'])->name('products.filter');
+    Route::get('create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('create', [ProductController::class, 'store'])->name('products.store');
 });
 Route::prefix('product')->group(function(){
     Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit')->middleware('auth');
     Route::put('edit/{id}', [ProductController::class, 'update'])->name('product.update')->middleware('auth');
-    Route::delete('product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete')->middleware('auth');
+    Route::delete('delete/{id}', [ProductController::class, 'delete'])->name('product.delete')->middleware('auth');
 });
 
 

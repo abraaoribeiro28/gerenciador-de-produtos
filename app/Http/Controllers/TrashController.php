@@ -15,7 +15,8 @@ class TrashController extends Controller
     public function index()
     {
         $trashes = Trash::all();
-        return view('configuration.trash.index', compact('trashes'));
+        $productTrash = Trash::where('type', 'product')->get();
+        return view('trash.index', compact('trashes', 'productTrash'));
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Archive;
+use App\Models\Trash;
 
 class ProductController extends Controller
 {
@@ -72,7 +73,18 @@ class ProductController extends Controller
     }
 
     public function delete($id){
-        Product::findOrFail($id)->delete();
+        $product = Product::findOrFail($id);
+        $trash = new Trash;
+        $trash->type = 'product';
+        $trash->id_product = $product->id;
+        $trash->id_category_product = $product->category_id;
+        $trash->name_product = $product->product;
+        $trash->description_product = $product->description;
+        $trash->price_product = $product->price;
+        $trash->stock_product = $product->stock;
+        $trash->archive_id_product = $product->archive_id;
+        $trash->save();
+        $product->delete();
         return redirect('/products')->with('msg', 'Produto deletado com sucesso!');
     }
 }

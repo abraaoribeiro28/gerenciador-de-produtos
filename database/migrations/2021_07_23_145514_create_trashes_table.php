@@ -15,9 +15,23 @@ class CreateTrashesTable extends Migration
     {
         Schema::create('trashes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('type');
-            $table->string('previous-table');
+            // category
+            $table->integer('id_category')->nullable();
+            $table->string('name_category')->nullable();
+            $table->text('description_category')->nullable();
+            $table->string('category_father')->nullable();
+            // product
+            $table->integer('id_product');
+            $table->integer('id_category_product')->nullable();
+            $table->string('name_product')->nullable();
+            $table->text('description_product')->nullable();
+            $table->string('price_product')->nullable();
+            $table->integer('stock_product')->nullable();
+            $table->integer('archive_id_product')->nullable();
+            // archive
+            $table->integer('id_archive')->nullable();;
+            $table->string('name_archive')->nullable();;
             $table->timestamps();
         });
     }

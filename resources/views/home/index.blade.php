@@ -48,13 +48,13 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="/configurations" class="w-50 pl-3">
+                        <a href="/trash" class="w-50 pl-3">
                             <div class="card border-0 border-bottom-green shadow-lg shadow-hover">
                                 <div class="card-body text-center">
                                     <div class="text-center">
-                                        <img src="/images/home/settings.png" style="width: 70px; margin-bottom: 10px;">
+                                        <img src="/images/home/lixeira.png" style="width: 70px; margin-bottom: 10px;">
                                     </div>
-                                    Configurações
+                                    Lixeira
                                 </div>
                             </div>
                         </a>
