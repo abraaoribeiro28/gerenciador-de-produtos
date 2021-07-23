@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\TrashController;
 
 
 Route::get('/', function () {
@@ -45,3 +46,5 @@ Route::get('/archives', [ArchiveController::class, 'index'])->name('archives')->
 Route::post('/archives', [ArchiveController::class, 'store'])->name('archives.store')->middleware('auth');
 Route::delete('/archive/delete/{id}', [ArchiveController::class, 'destroy']);
 
+// Trash
+Route::resource('/trash', TrashController::class);
