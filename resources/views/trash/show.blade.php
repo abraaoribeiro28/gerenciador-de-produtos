@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', 'Gerenciador - Lixeira')
+{{-- @section('title', 'Gerenciador - Lixeira')
 
 @section('content')
 <section class="section-trashes">
@@ -8,4 +8,4 @@
         
     @endforeach
 </section>
-@endsection
+@endsection --}}
