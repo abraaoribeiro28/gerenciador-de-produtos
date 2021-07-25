@@ -8,7 +8,7 @@
         <div class="card-body">
             <img src="{{asset('images/home/box.png')}}" width="60">
             <h5 class="card-title mt-2">Products</h5>
-            <a href="#" class="btn btn-primary w-100">Exibir</a>
+            <a href="/trashes/{product}" target="_self" class="btn btn-primary w-100">Exibir</a>
         </div>
     </div>
 
@@ -16,7 +16,7 @@
         <div class="card-body">
             <img src="{{asset('images/home/subfolder.png')}}" width="60">
             <h5 class="card-title mt-2">Categorias</h5>
-            <a href="#" class="btn btn-primary w-100">Exibir</a>
+            <a href="/trashes/{category}" class="btn btn-primary w-100">Exibir</a>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
         <div class="card-body">
             <img src="{{asset('images/home/galeria.png')}}" width="60">
             <h5 class="card-title mt-2">Imagens</h5>
-            <a href="#" class="btn btn-primary w-100">Exibir</a>
+            <a href="/trashes/{archive}" class="btn btn-primary w-100">Exibir</a>
         </div>
     </div>
 </section>

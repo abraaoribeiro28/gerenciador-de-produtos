@@ -47,4 +47,9 @@ Route::post('/archives', [ArchiveController::class, 'store'])->name('archives.st
 Route::delete('/archive/delete/{id}', [ArchiveController::class, 'destroy']);
 
 // Trash
-Route::resource('/trash', TrashController::class);
+Route::get('/trash', function(){
+    return view('trash.index');
+});
+Route::prefix('trashes')->group(function(){
+    Route::get('{id}', [TrashController::class, 'show']);
+});

@@ -47,8 +47,13 @@ class TrashController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $id = str_replace('{', '', $id);
+        $id = str_replace('}', '', $id);
+
+        // $trashes = Trash::all();
+        $trashes = Trash::where('type', $id)->get();
+        return view('trash.show', compact('trashes'));
     }
 
     /**

@@ -384,8 +384,6 @@ html, body{
     font-size: 18px;
 }
 
-
-
 .btn:focus{
     box-shadow: none;
 }
@@ -422,5 +420,5 @@ html, body{
     align-items: center;
 }
 .section-trash .card{
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
