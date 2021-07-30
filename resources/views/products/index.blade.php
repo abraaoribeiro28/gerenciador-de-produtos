@@ -36,7 +36,8 @@
         </thead>
         <tbody>
           @forelse ($products as $product)
-            <tr>
+            @if (!$product->deleted)
+              <tr>
                 <th scope="row">{{$product->id}}</th>
                 <th>{{$product->product}}</th>
                 <th>
@@ -65,7 +66,8 @@
                     <a href="/product/edit/{{$product->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
                     <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/product/delete/')"><i class="fa fa-trash"></i> Excluir</button>
                 </th>
-            </tr>
+              </tr>
+            @endif
           @empty
             <tr>
                 <th colspan="7" class="text-center">Lista de produtos vazia</th>

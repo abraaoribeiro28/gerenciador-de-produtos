@@ -4,10 +4,10 @@
 
 @section('content')
 <section class="section-trashes">
-    @foreach ($trashes as $trash)
+    {{-- @foreach ($trashes as $trash)
         <h1>{{$trash->name_product}} - {{$trash->id_category_product}} - {{$trash->price_product}} - {{$trash->name_product}}</h1>
         
-        {{-- <table class="table table-striped mt-4">
+        <table class="table table-striped mt-4">
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -57,7 +57,7 @@
                 </tr>
               @endforelse
             </tbody>
-        </table> --}}
-    @endforeach
+        </table>
+    @endforeach --}}
 </section>
 @endsection
