@@ -51,7 +51,7 @@ Route::get('/trash', function(){
     return view('trash.index');
 });
 Route::prefix('trashes')->group(function(){
-    Route::get('/product', [TrashController::class, 'show']);
-    Route::get('/category', [TrashController::class, 'show']);
-    Route::get('/archive', [TrashController::class, 'show']);
+    Route::get('/product', [TrashController::class, 'product']);
+    Route::get('/category', [TrashController::class, 'category']);
+    Route::get('/archive', [TrashController::class, 'archive']);
 });

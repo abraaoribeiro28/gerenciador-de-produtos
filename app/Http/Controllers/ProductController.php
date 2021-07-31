@@ -73,8 +73,12 @@ class ProductController extends Controller
 
     public function delete($id){
         $product = Product::findOrFail($id);
-        $product->deleted = true;
-        $product->update();
+        if($product->deleted){
+            $product->delete();
+        }else{
+            $product->deleted = true;
+            $product->update();
+        }
         return redirect('/products')->with('msg', 'Produto deletado com sucesso!');
     }
 }
