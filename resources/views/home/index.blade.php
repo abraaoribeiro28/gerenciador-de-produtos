@@ -48,16 +48,20 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="/trash" class="w-50 pl-3">
-                            <div class="card border-0 border-bottom-green shadow-lg shadow-hover">
-                                <div class="card-body text-center">
-                                    <div class="text-center">
-                                        <img src="/images/home/lixeira.png" style="width: 70px; margin-bottom: 10px;">
+
+                        <form action="/logout" method="POST" class="w-50 pl-3">
+                            @csrf
+                            <button type="submit" class="btn p-0 w-100">
+                                <div class="card border-0 border-bottom-green shadow-lg shadow-hover">
+                                    <div class="card-body text-center">
+                                        <div class="text-center">
+                                            <img src="/images/home/sair.png" style="width: 70px; margin-bottom: 10px;">
+                                        </div>
+                                        Sair
                                     </div>
-                                    Lixeira
                                 </div>
-                            </div>
-                        </a>
+                            </button>
+                        </form>
                     </div>
                     <div class="shape"></div>
                 </div>

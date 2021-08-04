@@ -7,12 +7,8 @@ use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\TrashController;
 
 
-Route::get('/', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     return view('home.index');
-});
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return redirect('/');
 })->name('dashboard');
 
 // Products
@@ -45,13 +41,3 @@ Route::prefix('category')->group(function(){
 Route::get('/archives', [ArchiveController::class, 'index'])->name('archives')->middleware('auth');
 Route::post('/archives', [ArchiveController::class, 'store'])->name('archives.store')->middleware('auth');
 Route::delete('/archive/delete/{id}', [ArchiveController::class, 'destroy']);
-
-// Trash
-Route::get('/trash', function(){
-    return view('trash.index');
-});
-Route::prefix('trashes')->group(function(){
-    Route::get('/product', [TrashController::class, 'product']);
-    Route::get('/category', [TrashController::class, 'category']);
-    Route::get('/archive', [TrashController::class, 'archive']);
-});
