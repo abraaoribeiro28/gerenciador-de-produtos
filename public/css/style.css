@@ -482,7 +482,7 @@ html, body{
 
 .btn.bg-azul{
     background-color: var(--azul);
-    font-weight: 600;
+    font-weight: 500;
     color: #fff;
 }
 
