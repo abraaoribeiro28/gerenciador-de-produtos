@@ -1,3 +1,9 @@
+:root{
+    --azul: #0061f2;
+}
+
+
+
 *{
     box-sizing: border-box;
 }
@@ -421,4 +427,31 @@ html, body{
 }
 .section-trash .card{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.navbar{
+    height: 96px;
+}
+.navbar-light .navbar-brand {
+    color: var(--azul);
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.navbar-light .navbar-nav .nav-link{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.btn.bg-azul{
+    background-color: var(--azul);
+    font-weight: 600;
+    color: #fff;
+}
+
+
+@media (min-width: 1500px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: 1440px;
+    }
 }

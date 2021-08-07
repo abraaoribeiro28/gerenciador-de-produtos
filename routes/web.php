@@ -7,7 +7,13 @@ use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\TrashController;
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+
+Route::get('/', function(){
+    return view('home.index');
+});
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('home.index');
 })->name('dashboard');
 
