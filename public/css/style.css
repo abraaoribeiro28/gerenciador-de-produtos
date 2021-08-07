@@ -448,7 +448,6 @@ html, body{
     transform: translateY(-1px);
     transition: transform .1s ease-in-out;
 }
-
 .dropdown.show .dropdown-arrow {
     transform: rotate(90deg);
 }
@@ -457,6 +456,15 @@ html, body{
     background-color: var(--azul);
     font-weight: 600;
     color: #fff;
+}
+
+.landing{
+    background-color: #ffffff;
+    /* border-bottom-left-radius:70%;
+    border-bottom-right-radius:70%; */
+    
+    border-radius: 50%/0 0 70px 70px;
+    overflow: hidden;
 }
 
 

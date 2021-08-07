@@ -49,8 +49,20 @@
     </nav>
 </header>
 
-<section>
-
-    landing
-
+<section class="landing">
+    <div class="container px-5">
+        <div class="row">
+            <div class="col-6">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div>
+                        <h2>Build your next project faster</h2>
+                        <p>Welcome to SB UI Kit Pro, a toolkit for building beautiful web interfaces, created by the development team at Start Bootstrap</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <img class="img-fluid" src="/images/home/gerenciamento.jpg" alt="">
+            </div>
+        </div>
+    </div>
 </section>
