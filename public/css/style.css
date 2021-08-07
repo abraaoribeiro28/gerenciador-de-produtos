@@ -440,7 +440,17 @@ html, body{
 }
 .navbar-light .navbar-nav .nav-link{
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 500;
+}
+
+.dropdown-arrow{
+    font-size: 10px;
+    transform: translateY(-1px);
+    transition: transform .1s ease-in-out;
+}
+
+.dropdown.show .dropdown-arrow {
+    transform: rotate(90deg);
 }
 
 .btn.bg-azul{
