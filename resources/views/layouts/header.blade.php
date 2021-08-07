@@ -28,10 +28,6 @@
                             </div>
                         </li>
                     @endguest
-
-                    
-                    
-
                 </ul>
             </div>
             @auth
