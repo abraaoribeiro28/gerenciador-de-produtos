@@ -6,6 +6,7 @@
 
 *{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 html, body{
     background-color: rgb(230, 230, 230);
@@ -431,7 +432,8 @@ html, body{
 
 
 .navbar{
-    height: 96px;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
 }
 .navbar-light .navbar-brand {
     color: var(--azul);
@@ -452,6 +454,32 @@ html, body{
     transform: rotate(90deg);
 }
 
+.dropdown-menu{
+    left: -328px;
+    width: 410px;
+    padding: 40px;
+    border: none;
+    box-shadow: 0 0 10px rgba(63, 45, 45, 0.2);
+}
+.dropdown-item{
+    padding: 0;
+}
+.dropdown-item:focus, .dropdown-item:hover{
+    color: gray;
+    background:none;
+}
+
+.title_pages{
+    color: var(--azul);
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .125em;
+    text-transform: uppercase;
+}
+.dropdown-item{
+    font-weight: 400;
+}
+
 .btn.bg-azul{
     background-color: var(--azul);
     font-weight: 600;
@@ -459,12 +487,17 @@ html, body{
 }
 
 .landing{
-    background-color: #ffffff;
-    /* border-bottom-left-radius:70%;
-    border-bottom-right-radius:70%; */
-    
+    background-color: rgb(240,244,250);
     border-radius: 50%/0 0 70px 70px;
     overflow: hidden;
+}
+.main_title{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+.main_description{
+    font-size: 1.3rem;
+    color: #69707a;
 }
 
 
