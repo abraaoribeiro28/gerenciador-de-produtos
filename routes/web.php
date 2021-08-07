@@ -47,3 +47,16 @@ Route::prefix('category')->group(function(){
 Route::get('/archives', [ArchiveController::class, 'index'])->name('archives')->middleware('auth');
 Route::post('/archives', [ArchiveController::class, 'store'])->name('archives.store')->middleware('auth');
 Route::delete('/archive/delete/{id}', [ArchiveController::class, 'destroy']);
+
+
+Route::prefix('example')->group(function(){
+    Route::get('products', function(){
+        return view('examples.products.products');
+    });
+    Route::get('product/create', function(){
+        return view('examples.products.create');
+    });
+    Route::get('product/edit', function(){
+        return view('examples.products.edit');
+    });
+});

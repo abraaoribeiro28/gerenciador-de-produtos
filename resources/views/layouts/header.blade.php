@@ -21,24 +21,24 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <h6 class="title_pages">Produtos</h6>
-                                        <a class="dropdown-item" href="/exemple/products">Produtos</a>
-                                        <a class="dropdown-item" href="/exemple/product/create">Criar produto</a>
-                                        <a class="dropdown-item" href="/exemple/product/edit">Editar produto</a>
+                                        <a class="dropdown-item" href="/example/products">Produtos</a>
+                                        <a class="dropdown-item" href="/example/product/create">Criar produto</a>
+                                        <a class="dropdown-item" href="/example/product/edit">Editar produto</a>
                                     </div>
                                     <div class="col-6">
                                         <h6 class="title_pages">Categorias</h6>
-                                        <a class="dropdown-item" href="/exemple/categories">Categories</a>
-                                        <a class="dropdown-item" href="/exemple/category/create">Criar categoria</a>
-                                        <a class="dropdown-item" href="/exemple/category/create">Editar Categoria</a>
+                                        <a class="dropdown-item" href="/example/categories">Categories</a>
+                                        <a class="dropdown-item" href="/example/category/create">Criar categoria</a>
+                                        <a class="dropdown-item" href="/example/category/create">Editar Categoria</a>
                                     </div>
                                     <div class="col-6 mt-3">
                                         <h6 class="title_pages">Imagens</h6>
-                                        <a class="dropdown-item" href="/exemple/archives">Archives</a>
+                                        <a class="dropdown-item" href="/example/archives">Archives</a>
                                     </div>
                                     <div class="col-6 mt-3">
                                         <h6 class="title_pages">User</h6>
-                                        <a class="dropdown-item" href="/exemple/login">Login</a>
-                                        <a class="dropdown-item" href="/exemple/register">Register</a>
+                                        <a class="dropdown-item" href="/example/login">Login</a>
+                                        <a class="dropdown-item" href="/example/register">Register</a>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
 
 
 
-<section class="landing">
+{{-- <section class="landing">
     <div class="container px-5">
         <div class="row">
             <div class="col-6">
@@ -87,4 +87,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}

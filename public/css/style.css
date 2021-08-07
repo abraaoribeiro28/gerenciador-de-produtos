@@ -230,6 +230,7 @@ html, body{
     text-transform: uppercase;
 }
 .section-products form input[type="submit"],
+.section-products form input[type="button"],
 .section-products form a{
     width: 100%;
     max-width: 300px;
