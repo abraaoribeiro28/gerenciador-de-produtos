@@ -9,12 +9,12 @@ use App\Http\Controllers\TrashController;
 
 
 Route::get('/', function(){
-    return view('home.index');
+    return view('home.home');
 });
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('home.index');
+    return redirect('/');
 })->name('dashboard');
 
 // Products
@@ -58,5 +58,8 @@ Route::prefix('example')->group(function(){
     });
     Route::get('product/edit', function(){
         return view('examples.products.edit');
+    });
+    Route::get('categories', function(){
+        return view('examples.categories.categories');
     });
 });

@@ -9,8 +9,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/categories">Categorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/archives">Imagens</a>
+                    </li>
+                    @endauth
                     @guest
                         <li class="nav-item dropdown">
                             <a class="nav-link href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,10 +54,10 @@
                                 </div>
                             </div>
                         </li>
-                    @endguest
-                    <li class="nav-item">
-                        <a class="nav-link" href="/learnmore">Saiba mais</span></a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/learnmore">Saiba mais</span></a>
+                        </li>
+                    @endguest 
                 </ul>
                 @auth
                     <form action="/logout" method="post" class="ml-5">
@@ -68,23 +79,3 @@
         </div>
     </nav>
 </header>
-
-
-
-{{-- <section class="landing">
-    <div class="container px-5">
-        <div class="row">
-            <div class="col-6">
-                <div class="d-flex justify-content-center align-items-center h-100">
-                    <div>
-                        <h2 class="main_title">Gerenciamento de Produtos</h2>
-                        <p class="main_description">O gerenciamento de produtos é um dos fatores que envolve todo o processo de administração competente de uma empresa.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <img class="img-fluid" src="/images/home/gerenciamento.svg" alt="">
-            </div>
-        </div>
-    </div>
-</section> --}}
