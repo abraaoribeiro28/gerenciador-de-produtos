@@ -20,4 +20,20 @@
         </div>
     </div>
 </section>
+<section class="design-responsivo container">
+    <div class="row">
+        <div class="col-6">
+            <img  src="/images/home/designer-animate.svg" class="img-fluid" id="imagem-resposive">
+        </div>
+        <div class="col-6 d-flex align-items-center">
+            <div>
+                <h2 class="main_title">Design responsivo</h2>
+                <p class="main_description">
+                    Além do design moderno, o layout é totalmente resposivo, se adaptando
+                    em diferentes tamanhos de telas.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
