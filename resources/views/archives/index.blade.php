@@ -3,14 +3,8 @@
 @section('title', 'Gerenciador - Imagens')
 
 @section('content')
-    <section class="section-products">
-        <div>
-            <div class="top">
-                <div class="borda"></div> 
-                <h1 class="title">Archives</h1>
-            </div>
-        </div>
-        <div class="mt-3">
+    <section class="section-products container">
+        <div style="margin-top: 50px;">
             <button class="btn btn-success" onclick="modalUpload()">
                 <i class="fa fa-upload"></i>
                 Upload file
@@ -19,11 +13,11 @@
 
         <div class="images mt-3">
             @foreach ($archives as $archive)
-            <div class="card-img">
+            <div class="card-img mb-4">
               <div class="box-img">
                 <img src="/images/products/{{$archive->archive}}">
               </div>
-              <span class="name-img">{{$archive->archive}}</span>
+              <span class="name-img pt-3 d-block" style="white-space: nowrap;">{{$archive->archive}}</span>
               <button class="btn btn-danger btn-exlcuir-archive" onclick="exibirModal({{$archive->id}}, '#modalDelete', '/archive/delete/')">Excluir</button>
             </div>
             @endforeach
