@@ -62,4 +62,13 @@ Route::prefix('example')->group(function(){
     Route::get('categories', function(){
         return view('examples.categories.categories');
     });
+    Route::get('category/create', function(){
+        return view('examples.categories.create');
+    });
+    Route::get('category/edit', function(){
+        return view('examples.categories.edit');
+    });
+    Route::get('archives', function(){
+        return view('examples.archives.archives');
+    });
 });

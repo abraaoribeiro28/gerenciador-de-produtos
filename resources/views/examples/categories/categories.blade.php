@@ -3,7 +3,7 @@
 @section('title', 'Gerenciador - Categorias Exemplo')
 
 @section('content')
-<section class="section-categories">
+<section class="section-categories container">
     <a href="#" class="btn btn-success mt-3"><i class="fa fa-plus"></i> Nova categoria</a>
 
     <div class="table">

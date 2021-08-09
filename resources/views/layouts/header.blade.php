@@ -40,7 +40,7 @@
                                         <h6 class="title_pages">Categorias</h6>
                                         <a class="dropdown-item" href="/example/categories">Categories</a>
                                         <a class="dropdown-item" href="/example/category/create">Criar categoria</a>
-                                        <a class="dropdown-item" href="/example/category/create">Editar Categoria</a>
+                                        <a class="dropdown-item" href="/example/category/edit">Editar Categoria</a>
                                     </div>
                                     <div class="col-6 mt-3">
                                         <h6 class="title_pages">Imagens</h6>

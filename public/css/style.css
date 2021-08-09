@@ -335,6 +335,7 @@ html, body{
     margin-top: 30px;
 }
 .section-categories-create form input[type="submit"],
+.section-categories-create form input[type="button"],
 .section-categories-create form a{
     width: 100%;
     max-width: 180px;
