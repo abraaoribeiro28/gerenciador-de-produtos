@@ -3,9 +3,9 @@
 @section('title', 'Gerenciar produtos - categorias')
 
 @section('content')
-    <section class="section-categories">
-        <div class="top">
-            <div class="borda"></div> 
+    <section class="section-categories container">
+        <div class="top mt-2">
+            <div class="borda" style="background-color: var(--azul);"></div> 
             <h1 class="title">
                 @if ($category->category_father != 0)
                     {{$category_father->category}} /
@@ -13,12 +13,6 @@
                 {{$category->category}}
             </h1>
         </div>
-        {{-- <div class="descricao">
-            <h5 class="m-0">Descrição:</h5>
-            <p class="mb-0" style="max-width: 400px;">{{$category->description}}</p>
-        </div> --}}
-        
-
         <table class="table table-striped mt-4">
             <thead>
               <tr>
