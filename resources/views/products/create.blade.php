@@ -3,14 +3,8 @@
 @section('title', 'Gerenciador - Novo produto')
 
 @section('content')
-<section class="section-products create">
-    <div>
-        <div class="top">
-            <div class="borda"></div> 
-            <h1 class="title">Novo Produto</h1>
-        </div>
-    </div>
-    <div>
+<section class="section-products create container">
+    <div style="margin-top: 100px;">
         <form action="{{route('products.create')}}" method="post" >
             @csrf
             <div class="row">
