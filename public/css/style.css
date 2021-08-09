@@ -442,6 +442,9 @@ html, body{
     font-weight: 600;
     font-size: 1.4rem;
 }
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: var(--azul);
+}
 .navbar-light .navbar-nav .nav-link{
     font-size: 1.1rem;
     font-weight: 500;

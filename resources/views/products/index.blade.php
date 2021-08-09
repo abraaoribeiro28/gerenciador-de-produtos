@@ -3,12 +3,8 @@
 @section('title', 'Gerenciador - produtos')
 
 @section('content')
-<section class="section-products" id="section">
-    <div class="top">
-        <div class="borda"></div> 
-        <h1 class="title">Produtos</h1>
-    </div>
-    <div class="mt-3 d-flex">
+<section class="section-products container" id="section">
+    <div class="d-flex" style="margin-top: 50px;">
       <a href="{{route('products.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Novo produto</a>
       <div class="dropdown mx-2">
         <button class="btn btn-secondary" type="button" id="dropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
