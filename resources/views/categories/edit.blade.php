@@ -3,13 +3,8 @@
 @section('title', 'Gerenciador - Editar categoria')
 
 @section('content')
-    <section class="section-categories-create">
-        <div class="top">
-            <div class="borda"></div> 
-            <h1 class="title">Editar categoria</h1>
-        </div>
-
-        <form action="/category/edit/{{$category_edit->id}}" method="POST">
+    <section class="section-categories-create container">
+        <form action="/category/edit/{{$category_edit->id}}" method="POST" style="margin-top: 100px;">
             @csrf
             @method('PUT')
             <div class="form-group">
