@@ -3,17 +3,10 @@
 @section('title', 'Gerenciador -Categorias')
 
 @section('content')
-<section class="section-categories">
-    <div class="top">
-        <div class="borda"></div> 
-        <h1 class="title">Categorias</h1>
-    </div>
+<section class="section-categories container">
+    <a href="{{route('category.create')}}" class="btn btn-success" style="margin-top: 50px;"><i class="fa fa-plus"></i> Nova categoria</a>
 
-    <a href="{{route('category.create')}}" class="btn btn-success mt-3"><i class="fa fa-plus"></i> Nova categoria</a>
-
-    
-    <div class="table">
-
+    <div class="table mt-3">
       @forelse ($categories as $category)
         @if ($category->category_father == 0)
           <div class="box">
