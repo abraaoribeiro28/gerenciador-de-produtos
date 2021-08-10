@@ -209,6 +209,7 @@ html, body{
 
 
 /* create */
+.section-categories-create,
 .section-categories,
 .section-products{
     background-color: rgb(230, 230, 230);

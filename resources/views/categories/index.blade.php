@@ -3,8 +3,9 @@
 @section('title', 'Gerenciador -Categorias')
 
 @section('content')
-<section class="section-categories container">
-    <a href="{{route('category.create')}}" class="btn btn-success" style="margin-top: 50px;"><i class="fa fa-plus"></i> Nova categoria</a>
+<section class="section-categories">
+  <div class="container px-5" style="padding-top: 50px;">
+    <a href="{{route('category.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Nova categoria</a>
 
     <div class="table mt-3">
       @forelse ($categories as $category)
@@ -119,6 +120,7 @@
         }, 3000)
       </script>
     @endif
+  </div>
 </section>
 
 <div class="modal" tabindex="-1">

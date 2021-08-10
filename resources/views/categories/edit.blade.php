@@ -3,8 +3,9 @@
 @section('title', 'Gerenciador - Editar categoria')
 
 @section('content')
-    <section class="section-categories-create container">
-        <form action="/category/edit/{{$category_edit->id}}" method="POST" style="margin-top: 100px;">
+<section class="section-categories-create">
+    <div class="container px-5" style="padding-top: 100px;">
+        <form action="/category/edit/{{$category_edit->id}}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -41,5 +42,6 @@
                 <input type="submit" class="btn btn-primary" value="Confirmar">
             </div>
         </form>
-    </section>
+    </div>
+</section>
 @endsection

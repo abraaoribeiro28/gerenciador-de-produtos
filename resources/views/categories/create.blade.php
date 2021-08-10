@@ -3,8 +3,9 @@
 @section('title', 'Gerenciador - Nova categoria')
 
 @section('content')
-    <section class="section-categories-create container">
-        <form action="{{route('category.store')}}" method="POST" style="margin-top: 100px;">
+<section class="section-categories-create">
+    <div class="container px-5" style="padding-top: 100px;">
+        <form action="{{route('category.store')}}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="category">Nome da categoria <span style="color: red;">*</span></label>
@@ -40,5 +41,6 @@
                 <input type="submit" class="btn btn-primary" value="Cadastrar">
             </div>
         </form>
-    </section>
+    </div>
+</section>
 @endsection

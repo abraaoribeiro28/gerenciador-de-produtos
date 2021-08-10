@@ -3,8 +3,9 @@
 @section('title', 'Gerenciar produtos - categorias')
 
 @section('content')
-    <section class="section-categories container">
-        <div class="top mt-2">
+    <section class="section-categories">
+      <div class="container px-5">
+        <div class="top pt-4">
             <div class="borda" style="background-color: var(--azul);"></div> 
             <h1 class="title">
                 @if ($category->category_father != 0)
@@ -13,7 +14,7 @@
                 {{$category->category}}
             </h1>
         </div>
-        <table class="table table-striped mt-4">
+        <table class="table table-striped mt-3">
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -58,13 +59,7 @@
               @endforelse
             </tbody>
         </table>
-
-
-
-        {{-- <h1>{{$category->category}}</h1>
-        @foreach ($products as $product)
-            <h3>{{$product->product}}</h3>
-        @endforeach --}}
+      </div>
     </section>
     <div class="modal" tabindex="-1">
         <div class="modal-dialog">
