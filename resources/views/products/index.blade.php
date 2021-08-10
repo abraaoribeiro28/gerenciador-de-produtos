@@ -4,7 +4,7 @@
 
 @section('content')
 <section class="section-products" id="section">
-  <div class="container">
+  <div class="container px-5">
     <div class="d-flex" style="padding-top: 50px;">
       <a href="{{route('products.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Novo produto</a>
       <div class="dropdown mx-2">
