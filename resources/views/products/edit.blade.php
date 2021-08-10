@@ -4,7 +4,7 @@
 
 @section('content')
 <section class="section-products edit">
-    <div class="container" style="padding-top: 100px;">
+    <div class="container px-5" style="padding-top: 100px;">
         <form action="/product/edit/{{$product->id}}" method="post">
             @csrf
             @method('PUT')
