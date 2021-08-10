@@ -33,38 +33,40 @@
         </thead>
         <tbody>
           @forelse ($products as $product)
-            @if (!$product->deleted)
-              <tr>
-                <th scope="row">{{$product->id}}</th>
-                <th>{{$product->product}}</th>
+            <tr>
+              <th scope="row">{{$product->id}}</th>
                 <th>
-                  @foreach ($categories as $category)
-                      @if ($category->id == $product->category_id)
-                        {{$category->category}}
-                      @endif
-                  @endforeach
-                </th>
-                <th>
-                  @if ($product->description == "")
-                    Vazio
-                  @else
-                    {{$product->description}}
-                  @endif
-                </th>
-                <th>{{$product->price}}</th>
-                <th>
-                  @if ($product->stock == 0)
-                      Esgotado
-                  @else
-                      {{$product->stock}}
-                  @endif
-                </th>
-                <th>
-                    <a href="/product/edit/{{$product->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
-                    <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/product/delete/')"><i class="fa fa-trash"></i> Excluir</button>
-                </th>
-              </tr>
-            @endif
+                  <a href="/product/{{$product->id}}" style="color: #212529;">
+                  {{$product->product}}
+                </a>
+              </th>
+              <th>
+                @foreach ($categories as $category)
+                    @if ($category->id == $product->category_id)
+                      {{$category->category}}
+                    @endif
+                @endforeach
+              </th>
+              <th style="max-width: 460px;">
+                @if ($product->description == "")
+                  Vazio
+                @else
+                  {{$product->description}}
+                @endif
+              </th>
+              <th>{{$product->price}}</th>
+              <th>
+                @if ($product->stock == 0)
+                    Esgotado
+                @else
+                    {{$product->stock}}
+                @endif
+              </th>
+              <th>
+                  <a href="/product/edit/{{$product->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                  <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/product/delete/')"><i class="fa fa-trash"></i> Excluir</button>
+              </th>
+            </tr>
           @empty
             <tr>
                 <th colspan="7" class="text-center">Lista de produtos vazia</th>

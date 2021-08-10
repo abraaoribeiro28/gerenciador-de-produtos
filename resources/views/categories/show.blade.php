@@ -29,10 +29,15 @@
             <tbody>
               @forelse ($products as $product)
                 <tr>
-                    <th scope="row">{{$product->id}}</th>
-                    <th>{{$product->product}}</th>
-                    <th>{{$category->category}}</th>
+                    <th scope="row">{{$product->id}}
+                    </th>
                     <th>
+                      <a href="/product/{{$product->id}}" style="color: #212529;">
+                        {{$product->product}}
+                      </a>
+                    </th>
+                    <th>{{$category->category}}</th>
+                    <th style="max-width: 460px;">
                         @if ($product->description == "")
                             Vazio
                         @else
