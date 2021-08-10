@@ -280,7 +280,8 @@ html, body{
 
 
 /* --- Categories ---*/
-.section-categories .table{
+.section-categories .table,
+.section-products .table{
     background-color: #fff;
     padding: 20px;
 }
