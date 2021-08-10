@@ -3,8 +3,8 @@
 @section('title', 'Gerenciador - Editar produto')
 
 @section('content')
-<section class="section-products edit container">
-    <div style="margin-top: 100px;">
+<section class="section-products edit">
+    <div class="container" style="padding-top: 100px;">
         <form action="/product/edit/{{$product->id}}" method="post">
             @csrf
             @method('PUT')
