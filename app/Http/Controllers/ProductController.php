@@ -55,6 +55,16 @@ class ProductController extends Controller
         return view('products.edit', compact('product', 'categories', 'archive', 'archives'));
     }
 
+    public function show($id){
+        $product = Product::findOrFail($id);
+        if($product->archive_id == null){
+            $archive = "not-image.png";
+        }else{
+            $archive = Archive::find($product->archive_id);
+        }
+        return view('products.show', compact('product', 'archive'));
+    }
+
     public function update(Request $request){
         $product = Product::findOrFail($request->id);
         $product->product = $request->product;
