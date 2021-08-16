@@ -462,14 +462,14 @@ html, body{
     transform: rotate(90deg);
 }
 
-.dropdown-menu{
+#menu-paginas{
     left: -328px;
     width: 410px;
     padding: 40px;
     border: none;
     box-shadow: 0 0 10px rgba(63, 45, 45, 0.2);
 }
-.dropdown-item{
+#menu-paginas .dropdown-item{
     padding: 0;
 }
 .dropdown-item:focus, .dropdown-item:hover{
@@ -484,7 +484,7 @@ html, body{
     letter-spacing: .125em;
     text-transform: uppercase;
 }
-.dropdown-item{
+#menu-paginas .dropdown-item{
     font-weight: 400;
 }
 
@@ -494,19 +494,44 @@ html, body{
     color: #fff;
 }
 
+
+@media (min-width: 992px){
+    .btn-logout,
+    .btn-login{
+        margin-left: 35px;
+    }
+}
+
+
 .landing{
     background-color: rgb(240,244,250);
     border-radius: 50%/0 0 70px 70px;
     overflow: hidden;
 }
+.landing h2{padding-top: 35px;}
+
+.design-responsivo{
+    padding-top: 35px;
+}
+
 .main_title{
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 500;
 }
 .main_description{
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #69707a;
 }
+
+@media (min-width: 992px){
+    .main_title{font-size: 2.5rem;}
+    .main_description{font-size: 1.3rem;}
+    .landing h2{padding-top: 0;}
+    .design-responsivo{padding-top: 0;}
+}
+
+
+
 
 
 @media (min-width: 1500px){
