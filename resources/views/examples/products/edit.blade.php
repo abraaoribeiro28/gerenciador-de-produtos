@@ -4,7 +4,7 @@
 
 @section('content')
 <section class="section-products create">
-    <div class="container px-5" style="margin-top: 100px;">
+    <div class="container px-5" style="padding-top: 100px;">
         <form action="#">
             @csrf
             <div class="row">
