@@ -28,7 +28,7 @@
                                 Páginas
                                 <i class="fa fa-chevron-right dropdown-arrow"></i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" id="menu-paginas" aria-labelledby="navbarDropdown">
                                 <div class="row">
                                     <div class="col-6">
                                         <h6 class="title_pages">Produtos</h6>
@@ -60,7 +60,7 @@
                     @endguest 
                 </ul>
                 @auth
-                    <form action="/logout" method="post" class="ml-5">
+                    <form action="/logout" method="post" class="btn-logout">
                         @csrf
                         <button type="submit" class="btn bg-azul">
                             Sair
@@ -69,7 +69,7 @@
                     </form>
                 @endauth
                 @guest
-                    <a href="/login" class="btn bg-azul ml-5">
+                    <a href="/login" class="btn bg-azul btn-login">
                         Entrar
                         <i class="fa fa-sign-in ml-1"></i>
                     </a>
