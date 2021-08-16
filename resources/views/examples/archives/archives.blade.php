@@ -3,8 +3,9 @@
 @section('title', 'Gerenciador - Imagens')
 
 @section('content')
-    <section class="section-products container">
-        <div style="margin-top: 50px;">
+    <section class="section-products">
+      <div class="container px-5">
+        <div style="padding-top: 50px;">
             <button class="btn btn-success" style="cursor: not-allowed;">
                 <i class="fa fa-upload"></i>
                 Upload file
@@ -28,6 +29,7 @@
               <button class="btn btn-danger btn-exlcuir-archive" style="cursor: not-allowed;">Excluir</button>
             </div>
         </div>
+      </div>
     </section>
 
     <div class="modal" id="modalUpload" tabindex="-1" style="align-items: center;">
