@@ -494,14 +494,12 @@ html, body{
     color: #fff;
 }
 
-
 @media (min-width: 992px){
     .btn-logout,
     .btn-login{
         margin-left: 35px;
     }
 }
-
 
 .landing{
     background-color: rgb(240,244,250);
