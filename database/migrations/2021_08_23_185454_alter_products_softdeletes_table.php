@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDeletedToProductsTable extends Migration
+class AlterProductsSoftdeletesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddDeletedToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->boolean('deleted')->after('archive_id')->nullable()->default(false);
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +25,6 @@ class AddDeletedToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('deleted');
-        });
+        $table->dropSoftDeletes();
     }
 }
