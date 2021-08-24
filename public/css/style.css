@@ -14,7 +14,7 @@ html, body{
 
 /*--- HOME ---*/
 .masthead {
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     background-color: #dd3d31;
     background-image: url(https://startbootstrap.com/assets/img/overlay.svg), linear-gradient(45deg, #dd3d31 0%, #d22f23 100%);
@@ -213,7 +213,7 @@ html, body{
 .section-categories,
 .section-products{
     background-color: rgb(230, 230, 230);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .section-products form{
