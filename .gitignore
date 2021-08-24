@@ -24,3 +24,8 @@ public/images/products/IMG_20200223_183538.jpg
 public/images/products/Captura de Tela (33).png
 public/images/products/Designer-pana.svg
 public/images/products/Captura de Tela (87).png
+database/factories/CategoryFactory.php
+database/seeders/CategorySeeder.php
+database/seeders/DatabaseSeeder.php
+database/seeders/DatabaseSeeder.php
+database/seeders/DatabaseSeeder.php
