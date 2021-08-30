@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
@@ -13,9 +16,9 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         if($request->id == null){
-            $products = Product::all();
+            $products = Product::paginate(15);
         }else{
-            $products = Product::where('category_id', $request->id)->get();
+            $products = Product::where('category_id', $request->id)->paginate(15);
         }
         return view('products.index', compact('products', 'categories'));
     }

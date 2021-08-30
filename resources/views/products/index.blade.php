@@ -3,7 +3,7 @@
 @section('title', 'Gerenciador - produtos')
 
 @section('content')
-<section class="section-products" id="section">
+<section class="section-products pb-5" id="section">
   <div class="container px-5">
     <div class="d-flex" style="padding-top: 50px;">
       <a href="{{route('products.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Novo produto</a>
@@ -74,6 +74,7 @@
           @endforelse
         </tbody>
     </table>
+    {{ $products->links('vendor.pagination.bootstrap-4') }}
 
       @if (Session('msg'))
         <div class="msg bg-success">
