@@ -3,6 +3,9 @@
 @section('title', 'Gerenciador - Novo produto')
 
 @section('content')
+
+@include('layouts.header')
+
 <section class="section-products create">
     <div class="container px-5" style="padding-top: 100px;">
         <form action="{{route('products.create')}}" method="post" >

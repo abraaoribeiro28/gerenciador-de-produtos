@@ -3,6 +3,9 @@
 @section('title', 'Gerenciador -Categorias')
 
 @section('content')
+
+@include('layouts.header')
+
 <section class="section-categories">
   <div class="container px-5" style="padding-top: 50px;">
     <a href="{{route('category.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Nova categoria</a>

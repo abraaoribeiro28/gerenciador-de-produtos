@@ -3,6 +3,9 @@
 @section('title', 'Gerenciador - Imagens')
 
 @section('content')
+
+@include('layouts.header')
+
 <section class="section-products">
   <div class="container px-5" style="padding-top: 50px;">
     <div>

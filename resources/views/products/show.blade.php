@@ -3,6 +3,9 @@
 @section('title', 'Gerenciador - Produto')
 
 @section('content')
+
+@include('layouts.header')
+
 <section class="section-products" id="section">
   <div class="container px-5" style="padding-top: 100px;">
     <div class="card mx-auto" style="width: 25rem;">

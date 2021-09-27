@@ -3,6 +3,9 @@
 @section('title', 'Gerenciador - produtos')
 
 @section('content')
+
+@include('layouts.header')
+
 <section class="section-products pb-5" id="section">
   <div class="container px-5">
     <div class="d-flex" style="padding-top: 50px;">

@@ -3,6 +3,9 @@
 @section('title', 'Gerenciar produtos - categorias')
 
 @section('content')
+
+@include('layouts.header')
+
     <section class="section-categories">
       <div class="container px-5">
         <div class="top pt-4">

@@ -3,6 +3,9 @@
 @section('title', 'Gerenciador - Editar produto')
 
 @section('content')
+
+@include('layouts.header')
+
 <section class="section-products edit">
     <div class="container px-5" style="padding-top: 100px;">
         <form action="/product/edit/{{$product->id}}" method="post">

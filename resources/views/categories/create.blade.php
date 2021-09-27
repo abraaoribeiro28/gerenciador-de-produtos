@@ -3,6 +3,9 @@
 @section('title', 'Gerenciador - Nova categoria')
 
 @section('content')
+
+@include('layouts.header')
+
 <section class="section-categories-create">
     <div class="container px-5" style="padding-top: 100px;">
         <form action="{{route('category.store')}}" method="POST">
