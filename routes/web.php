@@ -9,8 +9,8 @@ use App\Http\Controllers\TrashController;
 
 
 Route::get('/', function(){
-    return view('home.home');
-});
+    return view('home.index');
+})->middleware('auth');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
