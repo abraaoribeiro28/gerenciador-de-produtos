@@ -20,7 +20,7 @@
         </div>
     </div>
 </section>
-<section class="design-responsivo container">
+{{-- <section class="design-responsivo container">
     <div class="row">
         <div class="col-md-6 col-8 offset-2 offset-md-0">
             <img  src="/images/home/designer-animate.svg" class="img-fluid" id="imagem-resposive">
@@ -35,5 +35,5 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 @endsection
