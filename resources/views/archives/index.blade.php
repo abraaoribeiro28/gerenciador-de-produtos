@@ -70,5 +70,19 @@
   }, 3000)
 </script>
 @endif
+@if (Session('erro'))
+      <div class="msg bg-danger">
+        <h6 class="m-0">{{Session('erro')}}</h6>
+        <button class="btn" onclick="fecharMsg()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <script>
+        const msg = document.querySelector('.msg');
+        setTimeout(() => {
+          msg.style.display = 'none'
+        }, 3000)
+      </script>
+    @endif
 @include('layouts.modal-delete')
 @endsection
