@@ -13,9 +13,9 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         if($request->id == null){
-            $products = Product::paginate(15);
+            $products = Product::paginate(10);
         }else{
-            $products = Product::where('category_id', $request->id)->paginate(15);
+            $products = Product::where('category_id', $request->id)->paginate(10);
         }
         return view('products.index', compact('products', 'categories'));
     }
@@ -57,11 +57,14 @@ class ProductController extends Controller
 
     public function show($id){
         $product = Product::findOrFail($id);
+        
+        
         if($product->archive_id == null){
             $archive = "not-image.png";
         }else{
             $archive = Archive::find($product->archive_id);
         }
+        
         return view('products.show', compact('product', 'archive'));
     }
 
