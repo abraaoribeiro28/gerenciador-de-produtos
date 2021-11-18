@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Archive;
+use App\Models\Product;
+
 
 class ArchiveController extends Controller
 {
@@ -29,8 +31,13 @@ class ArchiveController extends Controller
     }
 
     public function destroy($id){
-        $archive = Archive::findOrFail($id);
-        $archive->delete();
-        return redirect('/archives')->with('msg', 'Imagem deletada com sucesso!');
+        $product = Product::where('archive_id', $id)->get();
+        if(count($product) > 0){
+            return redirect('/archives')->with('erro', 'Existe produto usando a imagem');
+        }else{
+            $archive = Archive::findOrFail($id);
+            $archive->delete();
+            return redirect('/archives')->with('msg', 'Imagem deletada com sucesso!');
+        }
     }
 }
