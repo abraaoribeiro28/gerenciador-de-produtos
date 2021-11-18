@@ -29,7 +29,6 @@ Route::prefix('product')->group(function(){
     Route::delete('delete/{id}', [ProductController::class, 'delete'])->name('product.delete')->middleware('auth');
 });
 
-
 // Categories
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories')->middleware('auth');
 Route::prefix('category')->group(function(){
