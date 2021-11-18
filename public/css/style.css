@@ -1,9 +1,6 @@
 :root{
     --azul: #0061f2;
 }
-
-
-
 *{
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
@@ -173,7 +170,6 @@ html, body{
     }
 }
 
-
 .borda{
     width: 4px;
     height: 40px;
@@ -201,12 +197,10 @@ html, body{
     padding: 20px 0 5px 0;
 }
 
-
 .dropdown-menu.filter{
     top: 37px;
     left: -1px;
 }
-
 
 /* create */
 .section-categories-create,
@@ -277,7 +271,6 @@ html, body{
 .modal p{
     margin: 0;
 }
-
 
 /* --- Categories ---*/
 .section-categories .table,
@@ -357,7 +350,6 @@ html, body{
     overflow: hidden;
 }
 
-
 .box-img{
     height: 200px;
 }
@@ -417,24 +409,9 @@ html, body{
     border-radius: 0 10px 0 0;
 }
 
-
-
 .custom-file-label::after {
     content: "Procurar";
 }
-
-
-/*--- Trash ---*/
-.section-trash{
-    height:100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.section-trash .card{
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
 
 .navbar{
     padding-top: 1.75rem;
@@ -527,10 +504,6 @@ html, body{
     .landing h2{padding-top: 0;}
     .design-responsivo{padding-top: 0;}
 }
-
-
-
-
 
 @media (min-width: 1500px){
     .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
