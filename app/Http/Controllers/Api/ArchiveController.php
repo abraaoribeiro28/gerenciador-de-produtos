@@ -29,7 +29,7 @@ class ArchiveController extends Controller
         $archive = $this->archive;
         if($request->hasFile('archive') && $request->file('archive')->isValid()){
             $name = $request->archive->getClientOriginalName();
-            $upload = $request->archive->storeAs('products', $name);
+            $upload = $request->archive->move(public_path('images/products'), $name);
             $archive->archive =  $name;
             if(!$upload){
                 return response()->json(['error' => 'Fail_upload'], 500);
