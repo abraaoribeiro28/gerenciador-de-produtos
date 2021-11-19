@@ -308,7 +308,7 @@ Status: `204 No Content`
 |:---------|:-------------------------------------|:--------|:-------------|
 | archive  | Imagem do produto                    | file    | Sim          |
 
-- Content-Type `multipart/form-data; boundary=<calculated when request is sent>`
+- Content-Type `multipart/form-data`
 - Accept `application/json`
 
 ### Exemplo de retorno
