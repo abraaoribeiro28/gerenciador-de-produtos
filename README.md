@@ -28,6 +28,9 @@
 | description       | Descrição da categoria               | text    | Não          |
 | category_father   | ID da categoria pai. Valor padrão: 0 | integer | Sim          |
 
+- Content-Type `application/json`
+- Accept `application/json`
+
 ### Exemplo de retorno
 
 Status: `201 Created`
@@ -57,7 +60,10 @@ Status: `201 Created`
 |:------------------|:-------------------------------------|:--------|:-------------|
 | category          | Nome da categoria                    | string  | Sim          |
 | description       | Descrição da categoria               | text    | Não          |
-| category_father   | ID da categoria pai. Valor padrão: 0 | integer | Sim          |
+| category_father   | ID da categoria pai. Valor padrão: 0 | integer | Não          |
+
+- Content-Type `application/json`
+- Accept `application/json`
 
 ### Exemplo de retorno
 
@@ -142,6 +148,9 @@ Status: `204 No Content`
 | stock             | Quantidade de produtos em estoque    | integer | Sim          |
 | archive_id        | ID da imagem do produto              | bigint  | Não          |
 
+- Content-Type `application/json`
+- Accept `application/json`
+
 ### Exemplo de retorno
 
 Status: `201 Created`
@@ -178,6 +187,9 @@ Status: `201 Created`
 | price             | Preço do produto                     | integer | Sim          |
 | stock             | Quantidade de produtos em estoque    | integer | Sim          |
 | archive_id        | ID da imagem do produto              | bigint  | Não          |
+
+- Content-Type `application/json`
+- Accept `application/json`
 
 ### Exemplo de retorno
 
@@ -295,6 +307,9 @@ Status: `204 No Content`
 | Campo    |  Descrição                           | Tipo    | Obrigatório? |
 |:---------|:-------------------------------------|:--------|:-------------|
 | archive  | Imagem do produto                    | file    | Sim          |
+
+- Content-Type `multipart/form-data; boundary=<calculated when request is sent>`
+- Accept `application/json`
 
 ### Exemplo de retorno
 
