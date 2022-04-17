@@ -39,7 +39,7 @@ class ProductController extends Controller
             $product->archive_id = $request->archive;
         }
         $product->save();
-        return redirect('/products')->with('msg', 'Produto criado com sucesso!');
+        return redirect(route('products'))->with('msg', 'Produto criado com sucesso!');
     }
 
     public function edit($id){
@@ -81,13 +81,13 @@ class ProductController extends Controller
             $product->archive_id = $request->archive;
         }
         $product->update();
-        return redirect('/products')->with('msg', 'Produto modificado com sucesso!');
+        return redirect(route('products'))->with('msg', 'Produto modificado com sucesso!');
     }
 
     public function delete($id){
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect('/products')->with('msg', 'Produto deletado com sucesso!');
+        return redirect(route('products'))->with('msg', 'Produto deletado com sucesso!');
     }
 }

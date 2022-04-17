@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Root',
             'email' => 'root@root.com',
             'password' => Hash::make('123123'),
+            'type' => 'super-admin',
         ]);
     }
 }

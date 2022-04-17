@@ -178,11 +178,11 @@ html, body{
 }
 
 /*--- Produtos ---*/
-.section-categories-create,
+/* .section-categories-create,
 .section-categories,
 .section-products{
     padding: 0 50px;
-}
+} */
 .section-products .title,
 .section-categories .title,
 .section-categories-create .title{
