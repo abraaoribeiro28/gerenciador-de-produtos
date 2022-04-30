@@ -8,8 +8,12 @@ use App\Http\Controllers\TrashController;
 
 
 Route::get('admin', function(){
-    return view('home.index');
+    return view('admin.layout.dashboard');
 })->middleware('auth')->name('admin');
+
+Route::get('/', function(){
+    return view('welcome');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return redirect('/admin');
@@ -31,7 +35,6 @@ Route::prefix('admin')->middleware('auth')->group(function(){
         Route::delete('delete/{id}', [ProductController::class, 'delete'])->name('product.delete')->middleware('auth');
     });
 
-
     // Categories
     Route::get('categories', [CategoryController::class, 'index'])->name('categories')->middleware('auth');
     Route::prefix('category')->group(function(){
@@ -44,7 +47,7 @@ Route::prefix('admin')->middleware('auth')->group(function(){
     });
 
     // Archives
-    Route::get('/archives', [ArchiveController::class, 'index'])->name('archives')->middleware('auth');
+    Route::get('/archives', [ArchiveController::class, 'index'])->name('archives.index')->middleware('auth');
     Route::post('/archives', [ArchiveController::class, 'store'])->name('archives.store')->middleware('auth');
     Route::delete('/archive/delete/{id}', [ArchiveController::class, 'destroy']);
 });

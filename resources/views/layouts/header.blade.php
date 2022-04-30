@@ -19,7 +19,7 @@
                         <a class="nav-link" href="{{route('categories')}}">Categorias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('archives')}}">Imagens</a>
+                        <a class="nav-link" href="{{route('archives.index')}}">Imagens</a>
                     </li>
                     @endauth
                     @guest
@@ -57,7 +57,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/learnmore">Saiba mais</span></a>
                         </li>
-                    @endguest 
+                    @endguest
                 </ul>
                 @auth
                     <form action="{{route('logout')}}" method="post" class="btn-logout">
@@ -75,7 +75,7 @@
                     </a>
                 @endguest
             </div>
-            
+
         </div>
     </nav>
 </header>

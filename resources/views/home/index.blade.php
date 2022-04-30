@@ -38,7 +38,7 @@
                         </a>
                     </div>
                     <div class="d-flex">
-                        <a href="{{route('archives')}}" class="w-50 pr-3">
+                        <a href="{{route('archives.index')}}" class="w-50 pr-3">
                             <div class="card border-0 border-bottom-yellow shadow-lg shadow-hover">
                                 <div class="card-body text-center">
                                     <div class="text-center">

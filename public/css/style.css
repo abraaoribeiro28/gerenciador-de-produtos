@@ -22,7 +22,7 @@ html, body{
     .masthead {
         display: flex;
         align-items: center;
-    } 
+    }
 }
 
 .masthead svg.wave {
@@ -474,7 +474,13 @@ html, body{
 @media (min-width: 992px){
     .btn-logout,
     .btn-login{
-        margin-left: 35px;
+        /* margin-left: 35px; */
+        color: #999c9e;
+        font-size: 14px;
+        padding: 20px 10px;
+        min-height: 50px;
+        font-weight: 600;
+        display: block;
     }
 }
 

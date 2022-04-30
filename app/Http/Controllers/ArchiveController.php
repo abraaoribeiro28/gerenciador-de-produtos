@@ -11,7 +11,7 @@ class ArchiveController extends Controller
 {
     public function index(){
         $archives = Archive::all();
-        return view('archives.index', compact('archives'));
+        return view('admin.archives.index', compact('archives'));
     }
 
     public function store(Request $request, Archive $archive){
@@ -27,17 +27,17 @@ class ArchiveController extends Controller
 
         $archive->save();
 
-        return redirect('/archives')->with('msg', 'Imagem adicionada com sucesso!');;
+        return redirect(route('archives.index'))->with('msg', 'Imagem adicionada com sucesso!');;
     }
 
     public function destroy($id){
         $product = Product::where('archive_id', $id)->get();
         if(count($product) > 0){
-            return redirect('/archives')->with('erro', 'Existe produto usando a imagem');
+            return redirect(route('archives.index'))->with('erro', 'Existe produto usando a imagem');
         }else{
             $archive = Archive::findOrFail($id);
             $archive->delete();
-            return redirect('/archives')->with('msg', 'Imagem deletada com sucesso!');
+            return redirect(route('archives.index'))->with('msg', 'Imagem deletada com sucesso!');
         }
     }
 }
