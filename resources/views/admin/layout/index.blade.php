@@ -19,19 +19,11 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/sidebar.css">
-
-
-
-    <link href="/css/inspinia/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="/css/inspinia/animate.css" rel="stylesheet">
-    <link href="/css/inspinia/style.css" rel="stylesheet">
 </head>
 <body>
 
     <div class="wrapper d-flex align-items-stretch">
-        @include('admin.layout.sidebar')
+        {{-- @include('admin.layout.sidebar') --}}
 
         @yield('content')
     </div>

@@ -1,170 +1,108 @@
-@extends('admin.layout.index')
+@extends('layouts.index')
 
 @section('title', 'Gerenciador - produtos')
 
 @section('content')
-<div id="wrapper">
-    <div id="page-wrapper" class="gray-bg w-100">
-        <div class="row border-bottom"></div>
-        <div class="row wrapper border-bottom white-bg page-heading">
-            <div class="col-lg-10">
-                <h2>E-commerce product list</h2>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a>E-commerce</a>
-                    </li>
-                    <li class="breadcrumb-item active">
-                        <strong>Product list</strong>
-                    </li>
-                </ol>
-            </div>
-            <div class="col-lg-2">
-            </div>
-        </div>
 
-        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
-            <div class="ibox-content m-b-sm border-bottom">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" for="product_name">Product Name</label>
-                            <input type="text" id="product_name" name="product_name" value="" placeholder="Product Name" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label class="col-form-label" for="price">Price</label>
-                            <input type="text" id="price" name="price" value="" placeholder="Price" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label class="col-form-label" for="quantity">Quantity</label>
-                            <input type="text" id="quantity" name="quantity" value="" placeholder="Quantity" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" for="status">Status</label>
-                            <select name="status" id="status" class="form-control">
-                                <option value="1" selected>Enabled</option>
-                                <option value="0">Disabled</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@include('layouts.header')
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox">
-                        <div class="ibox-content">
-                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Produto</th>
-                                        <th>Categoria</th>
-                                        <th>Descrição</th>
-                                        <th>Preço</th>
-                                        <th>Estoque</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($products as $product)
-                                        <tr>
-                                            <td>{{$product->id}}</td>
-                                            <td>
-                                                <a href="{{route('product.show', $product->id)}}" style="color: #212529; display: block; width: max-content;">
-                                                {{$product->product}}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                @foreach ($categories as $category)
-                                                    @if ($category->id == $product->category_id)
-                                                        {{$category->category}}
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <td>
-                                                @if ($product->description == "")
-                                                    Vazio
-                                                @else
-                                                    {{$product->description}}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                {{$product->price}}
-                                            </td>
-                                            <td>
-                                                @if ($product->stock == 0)
-                                                    Esgotado
-                                                @else
-                                                    {{$product->stock}}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{{route('product.edit', $product->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
-                                                <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/admin/product/delete/')"><i class="fa fa-trash"></i> Excluir</button>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center">Lista de produtos vazia</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="6">
-                                            <ul class="pagination float-right"></ul>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="section-products pb-5" id="section">
+  <div class="container">
+    <div class="d-flex" style="padding-top: 50px;">
+      <a href="{{route('products.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Novo produto</a>
+      <div class="dropdown mx-2">
+        <button class="btn btn-secondary" type="button" id="dropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-filter"></i> Filtrar produtos
+        </button>
+        <div class="dropdown-menu filter" aria-labelledby="dropdownFilter">
+          <a class="dropdown-item" href="{{route('products')}}">Todos os produtos</a>
+          @foreach ($categories as $category)
+            <a class="dropdown-item" href="/products/category/{{$category->id}}">{{$category->category}}</a>
+          @endforeach
         </div>
-        <div class="footer">
-            <div class="float-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2018
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+    <div class="table-responsive">
+      <table class="table table-striped mt-4">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Estoque</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @forelse ($products as $product)
+            <tr>
+              <th scope="row">{{$product->id}}</th>
+                <th>
+                  <a href="{{route('product.show', $product->id)}}" style="color: #212529; display: block; width: max-content;">
+                  {{$product->product}}
+                </a>
+              </th>
+              <th>
+                @foreach ($categories as $category)
+                    @if ($category->id == $product->category_id)
+                      {{$category->category}}
+                    @endif
+                @endforeach
+              </th>
+              <th>
+                @if ($product->description == "")
+                  Vazio
+                @else
+                  <span class="d-flex overflow-hidden" style="min-width: 200px; max-height: 46px;">
+                    {{$product->description}}
+                  </span>
+                @endif
+              </th>
+              <th>
+                <span style="display:block; width:max-content;"> {{$product->price}} </span>
+              </th>
+              <th>
+                @if ($product->stock == 0)
+                    Esgotado
+                @else
+                    {{$product->stock}}
+                @endif
+              </th>
+              <th style="display: block; width: max-content;">
+                  <a href="{{route('product.edit', $product->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                  <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/admin/product/delete/')"><i class="fa fa-trash"></i> Excluir</button>
+              </th>
+            </tr>
+          @empty
+            <tr>
+                <th colspan="7" class="text-center">Lista de produtos vazia</th>
+            </tr>
+          @endforelse
+        </tbody>
+      </table>
+    </div>
 
-{{-- @include('layouts.modal-delete') --}}
+    {{ $products->links('vendor.pagination.bootstrap-4') }}
 
-<!-- Mainly scripts -->
-<script src="/js/inspinia/jquery-3.1.1.min.js"></script>
-<script src="/js/inspinia/popper.min.js"></script>
-<script src="/js/inspinia/bootstrap.js"></script>
-<script src="/js/inspinia/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="/js/inspinia/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+      @if (Session('msg'))
+        <div class="msg bg-success">
+          <h6 class="m-0">{{Session('msg')}}</h6>
+          <button class="btn" onclick="fecharMsg()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <script>
+          const msg = document.querySelector('.msg');
+          setTimeout(() => {
+            msg.style.display = 'none'
+          }, 3000)
+        </script>
+      @endif
+  </div>
+</section>
 
-<!-- Custom and plugin javascript -->
-<script src="/js/inspinia/inspinia.js"></script>
-<script src="/js/inspinia/plugins/pace/pace.min.js"></script>
+@include('layouts.modal-delete')
 
-<!-- FooTable -->
-<script src="/js/inspinia/plugins/footable/footable.all.min.js"></script>
-
-<!-- Page-Level Scripts -->
-<script>
-    $(document).ready(function() {
-
-        $('.footable').footable();
-
-    });
-
-</script>
 @endsection
