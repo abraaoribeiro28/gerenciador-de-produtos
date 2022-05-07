@@ -17,14 +17,14 @@ class ProductController extends Controller
         }else{
             $products = Product::where('category_id', $request->id)->paginate(10);
         }
-        return view('products.index', compact('products', 'categories'));
+        return view('admin.products.index', compact('products', 'categories'));
     }
 
     public function create()
     {
         $categories = Category::all();
         $archives = Archive::all();
-        return view('products.create', compact('categories', 'archives'));
+        return view('admin.products.create', compact('categories', 'archives'));
     }
 
     public function store(Request $request, Product $product){
@@ -39,7 +39,7 @@ class ProductController extends Controller
             $product->archive_id = $request->archive;
         }
         $product->save();
-        return redirect('/products')->with('msg', 'Produto criado com sucesso!');
+        return redirect(route('products'))->with('msg', 'Produto criado com sucesso!');
     }
 
     public function edit($id){
@@ -51,21 +51,21 @@ class ProductController extends Controller
         }else{
             $archive = Archive::findOrFail($product->archive_id);
         }
-        
-        return view('products.edit', compact('product', 'categories', 'archive', 'archives'));
+
+        return view('admin.products.edit', compact('product', 'categories', 'archive', 'archives'));
     }
 
     public function show($id){
         $product = Product::findOrFail($id);
-        
-        
+
+
         if($product->archive_id == null){
             $archive = "not-image.png";
         }else{
             $archive = Archive::find($product->archive_id);
         }
-        
-        return view('products.show', compact('product', 'archive'));
+
+        return view('admin.products.show', compact('product', 'archive'));
     }
 
     public function update(Request $request){
@@ -81,13 +81,13 @@ class ProductController extends Controller
             $product->archive_id = $request->archive;
         }
         $product->update();
-        return redirect('/products')->with('msg', 'Produto modificado com sucesso!');
+        return redirect(route('products'))->with('msg', 'Produto modificado com sucesso!');
     }
 
     public function delete($id){
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect('/products')->with('msg', 'Produto deletado com sucesso!');
+        return redirect(route('products'))->with('msg', 'Produto deletado com sucesso!');
     }
 }

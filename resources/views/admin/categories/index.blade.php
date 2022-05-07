@@ -21,7 +21,7 @@
                   @foreach ($products as $product)
                     @if ($product->category_id == $category->id)
                       <script>{{$quantidade++}}</script>
-                    @endif 
+                    @endif
                   @endforeach
                   <span class="badge badge-primary">{{$quantidade}}</span>
                   <script>{{$quantidade=0}}</script>
@@ -32,11 +32,11 @@
                     <i class="fa fa-ellipsis-v"></i>
                   </button>
                   <div class="dropdown-menu actions" aria-labelledby="dropdown-category">
-                    <a class="dropdown-item" href="/category/{{$category->id}}">
+                    <a class="dropdown-item" href="{{route('category.show', $category->id)}}">
                       <i class="fa fa-eye" style="color: rgb(40, 167, 69, 0.9);"></i>
                       Visualizar
                     </a>
-                    <a class="dropdown-item" href="/category/edit/{{$category->id}}">
+                    <a class="dropdown-item" href="{{route('category.edit', $category->id)}}">
                       <i class="fa fa-pencil" style="color: rgb(248, 192, 51, 0.9);"></i>
                       Editar
                     </a>
@@ -57,7 +57,7 @@
                     @foreach ($products as $product)
                         @if ($product->category_id == $subcategory->id)
                             <script>{{$quantidade++}}</script>
-                        @endif 
+                        @endif
                     @endforeach
                     <span class="badge badge-primary">{{$quantidade}}</span>
                     <script>{{$quantidade=0}}</script>
@@ -68,11 +68,11 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdown-category">
-                        <a class="dropdown-item" href="/category/{{$subcategory->id}}">
+                        <a class="dropdown-item" href="{{route('category.show', $subcategory->id)}}">
                           <i class="fa fa-eye" style="color: rgb(40, 167, 69, 0.9);"></i>
                           Visualizar
                         </a>
-                        <a class="dropdown-item" href="/category/edit/{{$subcategory->id}}">
+                        <a class="dropdown-item" href="{{route('category.edit', $subcategory->id)}}">
                           <i class="fa fa-pencil" style="color: rgb(248, 192, 51, 0.9);"></i>
                           Editar
                         </a>
@@ -84,7 +84,7 @@
                     </div>
                   </div>
                 </div>
-                @endif 
+                @endif
             @endforeach
           </div>
         @endif
@@ -156,7 +156,7 @@
     modal.style.display = 'block';
 
     const formExcluir = document.querySelector('#form-excluir');
-    formExcluir.setAttribute('action', '/category/delete/'+id);
+    formExcluir.setAttribute('action', '/admin/category/delete/'+id);
   }
   function fecharModal(){
     modal.style.display = 'none';

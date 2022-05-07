@@ -21,7 +21,7 @@
                 <i class="fa fa-edit"></i>
                 Editar
             </a>
-            <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/product/delete/')" style="width: 49%;">
+            <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/admin/product/delete/')" style="width: 49%;">
                 <i class="fa fa-trash"></i>
                 Excluir
             </button>
