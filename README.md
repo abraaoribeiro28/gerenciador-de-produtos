@@ -6,6 +6,9 @@
 - Gerenciamento de categorias de produtos;
 - Upload de imagens;
 
+<h1 align="center"> Demo </h1>
+https://gerenciador.adevtecnologia.com.br/
+
 <h1 align="center"> Pré-requisitos </h1>
 
 - PHP 7.2
