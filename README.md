@@ -4,6 +4,7 @@
 - Gerenciamento e Autenticação de usuários;
 - Gerenciamento de produtos;
 - Gerenciamento de categorias de produtos;
+- Upload de imagens;
 
 <h1 align="center"> Pré-requisitos </h1>
 
