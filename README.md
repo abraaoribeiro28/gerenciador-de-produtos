@@ -8,6 +8,8 @@
 
 <h1 align="center"> Demo </h1>
 https://gerenciador.adevtecnologia.com.br/
+Usuário: root@root.com
+Senha: 12345678
 
 <h1 align="center"> Pré-requisitos </h1>
 
