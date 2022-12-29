@@ -7,7 +7,7 @@
 - Upload de imagens;
 
 <h1 align="center"> Demo </h1>
-Url: <a href="https://gerenciador.adevtecnologia.com.br" target="blank">gerenciador.demo</a><br>
+Url: <a href="https://gerenciador.adevtecnologia.com.br" target="_blank">gerenciador.demo</a><br>
 Usuário: root@root.com <br>
 Senha: 12345678
 
