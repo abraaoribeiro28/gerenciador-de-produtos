@@ -99,7 +99,7 @@
           modal.style.display = 'block';
       
           const formExcluir = document.querySelector('#form-excluir');
-          formExcluir.setAttribute('action', '/product/delete/'+id);
+          formExcluir.setAttribute('action', '/admin/product/delete/'+id);
         }
         function fecharModal(){
           modal.style.display = 'none';

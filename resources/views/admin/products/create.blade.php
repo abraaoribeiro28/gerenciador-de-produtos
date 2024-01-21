@@ -7,11 +7,11 @@
 @include('layouts.header')
 
 <section class="section-products create">
-    <div class="container px-5" style="padding-top: 100px;">
+    <div class="container" style="padding-top: 100px;">
         <form action="{{route('products.create')}}" method="post" >
             @csrf
             <div class="row">
-                <div class="col-4" id="imagem-produto">
+                <div class="col-12 col-md-4" id="imagem-produto">
                     <h6 class="mb-2">IMAGEM</h6>
                     <img src="/images/products/not-image.png" id="imagemProdutoCreate" alt="imagem">
                     <div class="file mt-1">
@@ -23,7 +23,7 @@
                         Se nenhuma imagem for selecionada, a imagem padrão acima vai ser incluida ao produto!
                     </p>
                 </div>
-                <div class="col-8" id="formulario">
+                <div class="col-12 col-md-8" id="formulario">
                     <div class="form-group">
                         <label for="product">Produto <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" name="product" id="product" placeholder="Nome do produto" required>

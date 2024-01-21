@@ -21,7 +21,7 @@
             <img src="/images/products/{{$archive->archive}}">
           </div>
           <span class="name-img pt-3 d-block" style="white-space: nowrap;">{{$archive->archive}}</span>
-          <button class="btn btn-danger btn-exlcuir-archive" onclick="exibirModal({{$archive->id}}, '#modalDelete', '/archive/delete/')">Excluir</button>
+          <button class="btn btn-danger btn-exlcuir-archive" onclick="exibirModal({{$archive->id}}, '#modalDelete', '/admin/archive/delete/')">Excluir</button>
         </div>
         @endforeach
     </div>
@@ -37,7 +37,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/archives" method="POST" enctype="multipart/form-data">
+      <form action="{{route('archives.store')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="modal-body">
               <div class="input-group">

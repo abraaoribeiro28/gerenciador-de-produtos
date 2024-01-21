@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-5">
+        <div class="container">
             <h2 class="navbar-brand m-0">Gerenciador</h2>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -9,17 +9,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="{{route('admin')}}">Home</a>
                     </li>
                     @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="/products">Produtos</a>
+                        <a class="nav-link" href="{{route('products')}}">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/categories">Categorias</a>
+                        <a class="nav-link" href="{{route('categories')}}">Categorias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/archives">Imagens</a>
+                        <a class="nav-link" href="{{route('archives.index')}}">Imagens</a>
                     </li>
                     @endauth
                     @guest
@@ -57,10 +57,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/learnmore">Saiba mais</span></a>
                         </li>
-                    @endguest 
+                    @endguest
                 </ul>
                 @auth
-                    <form action="/logout" method="post" class="btn-logout">
+                    <form action="{{route('logout')}}" method="post" class="btn-logout">
                         @csrf
                         <button type="submit" class="btn bg-azul">
                             Sair
@@ -75,7 +75,7 @@
                     </a>
                 @endguest
             </div>
-            
+
         </div>
     </nav>
 </header>

@@ -7,7 +7,7 @@
 @include('layouts.header')
 
 <section class="section-products pb-5" id="section">
-  <div class="container px-5">
+  <div class="container">
     <div class="d-flex" style="padding-top: 50px;">
       <a href="{{route('products.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Novo produto</a>
       <div class="dropdown mx-2">
@@ -22,7 +22,8 @@
         </div>
       </div>
     </div>
-    <table class="table table-striped mt-4">
+    <div class="table-responsive">
+      <table class="table table-striped mt-4">
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -39,7 +40,7 @@
             <tr>
               <th scope="row">{{$product->id}}</th>
                 <th>
-                  <a href="/product/{{$product->id}}" style="color: #212529;">
+                  <a href="{{route('product.show', $product->id)}}" style="color: #212529; display: block; width: max-content;">
                   {{$product->product}}
                 </a>
               </th>
@@ -50,14 +51,18 @@
                     @endif
                 @endforeach
               </th>
-              <th style="max-width: 460px;">
+              <th>
                 @if ($product->description == "")
                   Vazio
                 @else
-                  {{$product->description}}
+                  <span class="d-flex overflow-hidden" style="min-width: 200px; max-height: 46px;">
+                    {{$product->description}}
+                  </span>
                 @endif
               </th>
-              <th>{{$product->price}}</th>
+              <th>
+                <span style="display:block; width:max-content;"> {{$product->price}} </span>
+              </th>
               <th>
                 @if ($product->stock == 0)
                     Esgotado
@@ -65,9 +70,9 @@
                     {{$product->stock}}
                 @endif
               </th>
-              <th>
-                  <a href="/product/edit/{{$product->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
-                  <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/product/delete/')"><i class="fa fa-trash"></i> Excluir</button>
+              <th style="display: block; width: max-content;">
+                  <a href="{{route('product.edit', $product->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                  <button class="btn btn-danger" onclick="exibirModal({{$product->id}}, '#modalDelete', '/admin/product/delete/')"><i class="fa fa-trash"></i> Excluir</button>
               </th>
             </tr>
           @empty
@@ -76,7 +81,9 @@
             </tr>
           @endforelse
         </tbody>
-    </table>
+      </table>
+    </div>
+
     {{ $products->links('vendor.pagination.bootstrap-4') }}
 
       @if (Session('msg'))
