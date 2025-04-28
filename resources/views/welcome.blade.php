@@ -22,7 +22,7 @@
             <div class="flex lg:flex-1 lg:justify-end">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/admin') }}" class="text-sm/6 font-semibold text-gray-900">Dashboard <span aria-hidden="true">&rarr;</span></a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm/6 font-semibold text-gray-900">Dashboard <span aria-hidden="true">&rarr;</span></a>
                     @else
                         <a href="{{ url('/login') }}" class="text-sm/6 font-semibold text-gray-900">Entrar <span aria-hidden="true">&rarr;</span></a>
                     @endauth

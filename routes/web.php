@@ -5,23 +5,16 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ArchiveController;
 
-// Route::get('admin', function(){
-//     return view('admin.layout.dashboard');
-// })->middleware('auth')->name('admin');
-Route::get('admin', function(){
-    return view('home.index');
-})->middleware('auth')->name('admin');
-
 Route::get('/', function(){
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return redirect('/admin');
-})->name('dashboard');
+Route::get('dashboard', function(){
+    return view('dashboard');
+})->middleware('auth')->name('dashboard');
 
 
-Route::prefix('admin')->middleware('auth')->group(function(){
+Route::prefix('dashboard')->middleware('auth')->group(function(){
     // Products
     Route::prefix('products')->middleware('auth')->group(function(){
         Route::get('/', [ProductController::class, 'index'])->name('products');
