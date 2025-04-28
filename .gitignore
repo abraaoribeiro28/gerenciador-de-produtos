@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/build
+/public/build/assets
 /public/storage
 /storage/*.key
 /vendor
@@ -13,23 +15,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-public/images/products/planet.jpg
-public/images/products/iphone 10.jpg
-public/images/products/box.png
-public/images/products/galeria.png
-public/images/products/IMG_0869.JPG
-public/images/products/settings.png
-public/images/products/subfolder (1).png
-public/images/products/IMG_20200223_183538.jpg
-public/images/products/Captura de Tela (33).png
-public/images/products/Designer-pana.svg
-public/images/products/Captura de Tela (87).png
 database/factories/CategoryFactory.php
 database/seeders/CategorySeeder.php
-database/seeders/DatabaseSeeder.php
-database/seeders/DatabaseSeeder.php
-database/seeders/DatabaseSeeder.php
-database/seeders/DatabaseSeeder.php
-database/seeders/DatabaseSeeder.php
-database/seeders/DatabaseSeeder.php
 database/seeders/DatabaseSeeder.php
