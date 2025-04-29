@@ -29,16 +29,12 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::delete('delete/{id}', [ProductController::class, 'delete'])->name('product.delete')->middleware('auth');
     });
 
-    // Categories
-    Route::get('categories', [CategoryController::class, 'index'])->name('categories')->middleware('auth');
-    Route::prefix('category')->group(function(){
-        Route::get('create', [CategoryController::class, 'create'])->name('category.create')->middleware('auth');
-        Route::post('create', [CategoryController::class, 'store'])->name('category.store');
-        Route::get('{id}', [CategoryController::class, 'show'])->name('category.show');
-        Route::delete('delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy')->middleware('auth');
-        Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('category.edit')->middleware('auth');
-        Route::put('edit/{id}', [CategoryController::class, 'update'])->name('category.update')->middleware('auth');
-    });
+    /*
+     * Categorias
+     */
+    Route::get('categorias', static function () {
+        return view('admin.categories.index');
+    })->name('categorias.index');
 
     // Archives
     Route::get('/archives', [ArchiveController::class, 'index'])->name('archives.index')->middleware('auth');
