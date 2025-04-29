@@ -15,6 +15,3 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-database/factories/CategoryFactory.php
-database/seeders/CategorySeeder.php
-database/seeders/DatabaseSeeder.php
