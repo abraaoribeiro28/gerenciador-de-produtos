@@ -1,4 +1,4 @@
-<div class="bg-white border-b border-gray-200">
+<div class="bg-white border-b border-gray-200" x-data="{ show: false }">
     <div class="flex flex-wrap p-4">
         <div class="relative lg:w-4/12 md:w-6/12 w-full lg:mb-0 mb-2">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -9,7 +9,7 @@
             <input wire:model.live="search" class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Digite para filtrar" />
         </div>
         <div class="lg:w-8/12 md:w-6/12 w-full flex justify-end items-center">
-            <button type="button" class="mr-2 px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            <button wire:click="openModal()" type="button" class="mr-2 px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <svg class="w-[16px] h-[16px] text-gray-800 text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                 </svg>
@@ -95,4 +95,48 @@
         </div>
     </div>
 
+
+    <x-modal :id="5" maxWidth="2xl" wire:model.live="isModalOpen" class="overflow-visible">
+        <div class="px-6 py-4">
+            <div class="text-lg font-medium text-gray-900">
+                Cadastrar categoria
+            </div>
+
+            <div class="mt-4 text-sm text-gray-600">
+
+                <div class="mb-4">
+                    <x-label class="mb-1">Nome</x-label>
+                    <x-input placeholder="Nome da categoria" class="w-full" wire:model.live="name" name="name"/>
+                    <div class="text-red-500">
+                        @if ($errors->has('slug'))
+                            {{ $errors->first('slug') }}
+                        @elseif ($errors->has('name'))
+                            {{ $errors->first('name') }}
+                        @endif
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <x-searchable-select
+                        name="parent_id"
+                        label="Categoria parente"
+                        wire:model="parent_id"
+                        :options="$options"
+                    />
+                    <div class="">@error('parent_id') {{ $message }} @enderror</div>
+                </div>
+
+
+
+                <x-switch-input model="status" label="Marque para ativar" />
+
+            </div>
+        </div>
+
+        <div class="flex flex-row justify-end px-6 py-4 bg-gray-100 text-end rounded-b-lg">
+            <x-button wire:click="save()">
+                Salvar
+            </x-button>
+        </div>
+    </x-modal>
 </div>
