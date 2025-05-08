@@ -79,7 +79,7 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 flex justify-end">
-                            <button type="button" class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <button wire:click="edit({{$category->id}})" type="button" class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                 Editar
                             </button>
                             <button type="button" class="ml-1 px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-red-700 hover:bg-red-800 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-red-300 focus:outline-none focus:ring-blue-300">

@@ -25,6 +25,7 @@ class Categories extends Component
     public ?string $parent_id = null;
     public ?string $slug = null;
     public ?bool $status = true;
+    public ?int $categoryId = null;
 
     protected $queryString = ['search'];
 
@@ -33,7 +34,7 @@ class Categories extends Component
         return [
             'name' => 'required|min:3|max:255',
             'parent_id' => 'nullable|exists:categories,id',
-            'slug' => 'unique:categories,slug',
+            'slug' => 'unique:categories,slug,' . $this->categoryId,
             'status' => 'boolean'
         ];
     }
@@ -60,20 +61,35 @@ class Categories extends Component
 
     protected function resetForm(): void
     {
-        $this->reset(['name', 'parent_id', 'slug', 'status']);
+        $this->reset(['categoryId', 'name', 'parent_id', 'slug', 'status']);
     }
 
     public function save()
     {
         $validated = $this->validate();
 
-        Category::create([
-            ...$validated,
-            'user_id' => auth()->id(),
-        ]);
+        if ($this->categoryId) {
+            $category = Category::findOrFail($this->categoryId);
+            $category->update($validated);
+        } else {
+            Category::create([
+                ...$validated,
+                'user_id' => auth()->id(),
+            ]);
+        }
 
         $this->resetForm();
         $this->isModalOpen = false;
+    }
+
+    public function edit(Category $category): void
+    {
+        $this->categoryId = $category->id;
+        $this->name = $category->name;
+        $this->parent_id = $category->parent_id;
+        $this->slug = $category->slug;
+        $this->status = $category->status;
+        $this->isModalOpen = true;
     }
 
     public function updatedName(): void
