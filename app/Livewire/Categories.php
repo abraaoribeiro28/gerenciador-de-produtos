@@ -12,9 +12,12 @@ class Categories extends Component
 {
     use WithPagination;
 
+    // --- Busca e ordenação da listagem --- ///
     public ?string $search = null;
     public ?string $sortBy = null;
     public ?string $sortDir = null;
+
+    // --- Modal e formulário --- //
     public ?bool $isModalOpen = false;
     public ?array $options = [];
     public ?string $searchTerm = null;
@@ -48,26 +51,16 @@ class Categories extends Component
 
     public function render(): View
     {
-        $query = Category::query();
-
-        if ($this->sortBy === 'category') {
-            $query
-                ->leftJoin('categories as parent', 'categories.parent_id', '=', 'parent.id')
-                ->orderBy('parent.name', $this->sortDir)
-                ->select('categories.*');
-        } else {
-            $query
-                ->when($this->sortBy, fn($q) => $q->orderBy($this->sortBy, $this->sortDir))
-                ->when($this->sortBy === null, fn($q) => $q->orderBy('created_at', 'desc'));
-        }
-
-        $query->withCount('products')
-            ->with('parent')
-            ->filterBySearch($this->search);
+        $categories = Category::queryWithFilters($this->sortBy, $this->sortDir, $this->search)->paginate();
 
         return view('livewire.categories', [
-            'categories' => $query->paginate(),
+            'categories' => $categories,
         ]);
+    }
+
+    protected function resetForm(): void
+    {
+        $this->reset(['name', 'parent_id', 'slug', 'status']);
     }
 
     public function save()
@@ -79,13 +72,20 @@ class Categories extends Component
             'user_id' => auth()->id(),
         ]);
 
-        $this->reset(['name', 'parent_id', 'slug']);
+        $this->resetForm();
+        $this->isModalOpen = false;
     }
 
-    public function updatedSearchTerm()
+    public function updatedName(): void
+    {
+        $this->slug = Str::slug($this->name, '-');
+    }
+
+    public function updatedSearchTerm(): void
     {
         if (Str::length($this->searchTerm) > 2){
             $this->options = Category::where('name', 'like', '%' . $this->searchTerm . '%')
+                ->limit(10)
                 ->pluck('name', 'id')
                 ->toArray();
         }else{
@@ -93,12 +93,7 @@ class Categories extends Component
         }
     }
 
-    public function updatedName()
-    {
-        $this->slug = Str::slug($this->name, '-');
-    }
-
-    public function updating()
+    public function updating(): void
     {
         $this->resetPage();
     }
@@ -112,8 +107,9 @@ class Categories extends Component
         $this->sortBy = $column;
     }
 
-    public function openModal()
+    public function openModal(): void
     {
+        $this->resetForm();
         $this->isModalOpen = true;
     }
 }

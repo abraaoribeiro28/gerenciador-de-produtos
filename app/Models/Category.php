@@ -55,4 +55,24 @@ class Category extends Model
 
         return $query;
     }
+
+    public static function queryWithFilters(?string $sortBy, ?string $sortDir, ?string $search)
+    {
+        $query = self::query();
+
+        if ($sortBy === 'category') {
+            $query->leftJoin('categories as parent', 'categories.parent_id', '=', 'parent.id')
+                ->orderBy('parent.name', $sortDir)
+                ->select('categories.*');
+        } else {
+            $query->when($sortBy, fn($q) => $q->orderBy($sortBy, $sortDir))
+                ->when($sortBy === null, fn($q) => $q->orderBy('created_at', 'desc'));
+        }
+
+        $query->withCount('products')
+            ->with('parent')
+            ->filterBySearch($search);
+
+        return $query;
+    }
 }
