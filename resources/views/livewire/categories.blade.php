@@ -96,14 +96,13 @@
     </div>
 
 
-    <x-modal :id="5" maxWidth="2xl" wire:model.live="isModalOpen" class="overflow-visible">
+    <x-modal maxWidth="2xl" wire:model.live="isModalOpen" class="overflow-visible">
         <div class="px-6 py-4">
             <div class="text-lg font-medium text-gray-900">
                 Cadastrar categoria
             </div>
 
             <div class="mt-4 text-sm text-gray-600">
-
                 <div class="mb-4">
                     <x-label class="mb-1">Nome</x-label>
                     <x-input placeholder="Nome da categoria" class="w-full" wire:model.live="name" name="name"/>
@@ -118,18 +117,17 @@
 
                 <div class="mb-4">
                     <x-searchable-select
+                        wire:key="{{ $categoryId ?? 'new' }}"
                         name="parent_id"
                         label="Categoria parente"
                         wire:model="parent_id"
                         :options="$options"
+                        :nameCategorySelected="$nameCategorySelected"
                     />
                     <div class="">@error('parent_id') {{ $message }} @enderror</div>
                 </div>
 
-
-
                 <x-switch-input model="status" label="Marque para ativar" />
-
             </div>
         </div>
 

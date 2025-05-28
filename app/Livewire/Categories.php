@@ -12,12 +12,10 @@ class Categories extends Component
 {
     use WithPagination;
 
-    // --- Busca e ordenação da listagem --- ///
     public ?string $search = null;
     public ?string $sortBy = null;
     public ?string $sortDir = null;
 
-    // --- Modal e formulário --- //
     public ?bool $isModalOpen = false;
     public ?array $options = [];
     public ?string $searchTerm = null;
@@ -26,6 +24,7 @@ class Categories extends Component
     public ?string $slug = null;
     public ?bool $status = true;
     public ?int $categoryId = null;
+    public ?string $nameCategorySelected = null;
 
     protected $queryString = ['search'];
 
@@ -61,7 +60,7 @@ class Categories extends Component
 
     protected function resetForm(): void
     {
-        $this->reset(['categoryId', 'name', 'parent_id', 'slug', 'status']);
+        $this->reset(['categoryId', 'name', 'parent_id', 'slug', 'status', 'nameCategorySelected']);
     }
 
     public function save()
@@ -89,6 +88,13 @@ class Categories extends Component
         $this->parent_id = $category->parent_id;
         $this->slug = $category->slug;
         $this->status = $category->status;
+
+        $this->nameCategorySelected = $category->parent?->name;
+
+        $this->options = Category::where('id', $category->parent_id)
+            ->pluck('name', 'id')
+            ->toArray();
+
         $this->isModalOpen = true;
     }
 
