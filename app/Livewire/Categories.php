@@ -26,7 +26,10 @@ class Categories extends Component
     public ?int $categoryId = null;
     public ?string $nameCategorySelected = null;
 
-    protected $queryString = ['search'];
+    public bool $showModalDelete = false;
+    public ?Category $categoryDelete = null;
+
+    protected array $queryString = ['search'];
 
     protected function rules(): array
     {
@@ -134,5 +137,19 @@ class Categories extends Component
     {
         $this->resetForm();
         $this->isModalOpen = true;
+    }
+
+
+    public function confirmDelete(Category $category)
+    {
+        $this->categoryDelete = $category;
+        $this->showModalDelete = true;
+    }
+
+    public function delete()
+    {
+        $this->categoryDelete->delete();
+        $this->categoryDelete = null;
+        $this->showModalDelete = false;
     }
 }

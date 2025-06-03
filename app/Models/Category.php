@@ -75,4 +75,18 @@ class Category extends Model
 
         return $query;
     }
+
+    /**
+     * Ao deletar uma categoria, remove também suas subcategorias diretas.
+     *
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        static::deleting(static function ($category) {
+            $category->children()->each(function ($child) {
+                $child->delete();
+            });
+        });
+    }
 }
