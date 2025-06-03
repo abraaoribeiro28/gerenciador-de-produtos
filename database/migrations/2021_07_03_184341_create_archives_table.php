@@ -11,11 +11,15 @@ class CreateArchivesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('archives', function (Blueprint $table) {
             $table->id();
             $table->string('archive');
+            $table->string('filename');
+            $table->string('extension');
+            $table->string('path');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -25,7 +29,7 @@ class CreateArchivesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('archives');
     }

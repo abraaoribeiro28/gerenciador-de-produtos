@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,21 +16,43 @@ class Category extends Model
 
     protected $guarded = [];
 
+    /**
+     * Returns this category's parent.
+     *
+     * @return BelongsTo
+     */
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
+    /**
+     * Returns child categories of this category.
+     *
+     * @return HasMany
+     */
     public function children(): HasMany
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    /**
+     * Returns products linked to this category.
+     *
+     * @return HasMany
+     */
     public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'category_id');
     }
 
+    /**
+     * Scope to filter categories by search term.
+     *
+     * @param $query
+     * @param $search
+     * @return mixed
+     */
     public function scopeFilterBySearch($query, $search)
     {
         $query->with('parent');
@@ -56,6 +79,15 @@ class Category extends Model
         return $query;
     }
 
+    /**
+     * Builds query with dynamic sorting and search filters.
+     * If sorted by 'category', orders by parent category name.
+     *
+     * @param string|null $sortBy
+     * @param string|null $sortDir
+     * @param string|null $search
+     * @return Builder
+     */
     public static function queryWithFilters(?string $sortBy, ?string $sortDir, ?string $search)
     {
         $query = self::query();
