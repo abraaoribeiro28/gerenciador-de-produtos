@@ -34,7 +34,7 @@
                 <input
                     type="text"
                     placeholder="Digite 3 letras para buscar"
-                    wire:model.live="searchTerm"
+                    wire:model.live="parentCategorySearch"
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
             </div>

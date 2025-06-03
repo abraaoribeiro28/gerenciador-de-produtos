@@ -2,45 +2,79 @@
 
 namespace App\Livewire;
 
-use App\Models\Category;
-use Illuminate\Support\Str;
-use Illuminate\View\View;
 use Livewire\Component;
+use App\Models\Category;
+use Illuminate\View\View;
+use Illuminate\Support\Str;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 
 class Categories extends Component
 {
     use WithPagination;
 
+    // Search and sorting
     public ?string $search = null;
     public ?string $sortBy = null;
     public ?string $sortDir = null;
 
-    public ?bool $isModalOpen = false;
-    public ?array $options = [];
-    public ?string $searchTerm = null;
-    public ?string $name = null;
-    public ?string $parent_id = null;
-    public ?string $slug = null;
-    public ?bool $status = true;
-    public ?int $categoryId = null;
-    public ?string $nameCategorySelected = null;
-
+    // MModal visibility control
+    public bool $showModalForm = false;
     public bool $showModalDelete = false;
-    public ?Category $categoryDelete = null;
+
+    // Form data
+    public bool $status = true;
+    public ?string $name = null;
+    public ?string $slug = null;
+    public ?string $parent_id = null;
+
+    // Parent category relation and selection
+    public array $parentCategoryOptions = [];
+    public ?string $selectedParentName = null;
+    public ?string $parentCategorySearch = null;
+
+    // Identifiers for edit and delete actions
+    public ?int $categoryId = null;
+    public ?Category $categoryToDelete = null;
 
     protected array $queryString = ['search'];
 
+    /**
+     * Render the Livewire component view with filtered categories.
+     *
+     * @return View
+     */
+    public function render(): View
+    {
+        $categories = Category::queryWithFilters(
+            $this->sortBy,
+            $this->sortDir,
+            $this->search
+        )->paginate();
+
+        return view('livewire.categories', compact('categories'));
+    }
+
+    /**
+     * Get the validation rules for the category form.
+     *
+     * @return array
+     */
     protected function rules(): array
     {
         return [
-            'name' => 'required|min:3|max:255',
-            'parent_id' => 'nullable|exists:categories,id',
-            'slug' => 'unique:categories,slug,' . $this->categoryId,
-            'status' => 'boolean'
+            'name' => ['required', 'min:3', 'max:255'],
+            'parent_id' => ['nullable', 'exists:categories,id'],
+            'slug' => [Rule::unique('categories', 'slug')->ignore($this->categoryId)],
+            'status' => ['boolean'],
         ];
     }
 
+    /**
+     * Custom validation messages for the category form.
+     *
+     * @return array<string>
+     */
     protected function messages(): array
     {
         return [
@@ -52,38 +86,23 @@ class Categories extends Component
         ];
     }
 
-    public function render(): View
+    /**
+     * Open the category form modal and reset its state.
+     *
+     * @return void
+     */
+    public function openModal(): void
     {
-        $categories = Category::queryWithFilters($this->sortBy, $this->sortDir, $this->search)->paginate();
-
-        return view('livewire.categories', [
-            'categories' => $categories,
-        ]);
-    }
-
-    protected function resetForm(): void
-    {
-        $this->reset(['categoryId', 'name', 'parent_id', 'slug', 'status', 'nameCategorySelected', 'options', 'searchTerm']);
-    }
-
-    public function save()
-    {
-        $validated = $this->validate();
-
-        if ($this->categoryId) {
-            $category = Category::findOrFail($this->categoryId);
-            $category->update($validated);
-        } else {
-            Category::create([
-                ...$validated,
-                'user_id' => auth()->id(),
-            ]);
-        }
-
         $this->resetForm();
-        $this->isModalOpen = false;
+        $this->showModalForm = true;
     }
 
+    /**
+     * Populate the form with the selected category data for editing.
+     *
+     * @param Category $category
+     * @return void
+     */
     public function edit(Category $category): void
     {
         $this->resetForm();
@@ -93,63 +112,131 @@ class Categories extends Component
         $this->slug = $category->slug;
         $this->status = $category->status;
 
-        $this->nameCategorySelected = $category->parent?->name;
+        $this->selectedParentName = $category->parent?->name;
 
-        $this->options = Category::where('id', $category->parent_id)
+        $this->parentCategoryOptions = Category::where('id', $category->parent_id)
             ->pluck('name', 'id')
             ->toArray();
 
-        $this->isModalOpen = true;
+        $this->showModalForm = true;
     }
 
+    /**
+     * Validate and save the category.
+     * Creates a new record or updates the existing one based on categoryId.
+     *
+     * @return void
+     */
+    public function save(): void
+    {
+        $validated = $this->validate();
+
+        Category::updateOrCreate(
+            ['id' => $this->categoryId],
+            [...$validated, 'user_id' => auth()->id(),]
+        );
+
+        $this->resetForm();
+        $this->showModalForm = false;
+    }
+
+    /**
+     * Reset all category form-related fields to their default values.
+     *
+     * @return void
+     */
+    protected function resetForm(): void
+    {
+        $this->reset([
+            'name',
+            'slug',
+            'status',
+            'parent_id',
+            'categoryId',
+            'selectedParentName',
+            'parentCategoryOptions',
+            'parentCategorySearch'
+        ]);
+    }
+
+    /**
+     * Prepare and open the delete confirmation modal for the selected category.
+     *
+     * @param Category $category
+     * @return void
+     */
+    public function confirmDelete(Category $category): void
+    {
+        $this->categoryToDelete = $category;
+        $this->showModalDelete = true;
+    }
+
+    /**
+     * Delete the selected category and close the confirmation modal.
+     *
+     * @return void
+     */
+    public function delete(): void
+    {
+        $this->categoryToDelete->delete();
+        $this->categoryToDelete = null;
+        $this->showModalDelete = false;
+    }
+
+    /**
+     * Automatically generate a slug when the name is updated.
+     *
+     * @return void
+     */
     public function updatedName(): void
     {
         $this->slug = Str::slug($this->name, '-');
     }
 
-    public function updatedSearchTerm(): void
+    /**
+     * Update the parent category options dynamically as the search term changes.
+     * Triggers when the user types in the parent category search field.
+     *
+     * @return void
+     */
+    public function updatedParentCategorySearch(): void
     {
-        if (Str::length($this->searchTerm) > 2){
-            $this->options = Category::where('name', 'like', '%' . $this->searchTerm . '%')
+        if (Str::length($this->parentCategorySearch) > 2) {
+            $this->parentCategoryOptions = Category::where('name', 'like', '%' . $this->parentCategorySearch . '%')
                 ->limit(10)
                 ->pluck('name', 'id')
                 ->toArray();
-        }else{
-            $this->options = [];
+        } else {
+            $this->parentCategoryOptions = [];
         }
     }
 
+    /**
+     * Reset the pagination when any public property is being updated.
+     *
+     * This ensures that the user is returned to the first page
+     * whenever filters or search terms change.
+     *
+     * @return void
+     */
     public function updating(): void
     {
         $this->resetPage();
     }
 
-    public function sort($column): void
+    /**
+     * Handle table sorting logic.
+     * Toggles the sort direction if the same column is clicked again.
+     *
+     * @param string $column
+     * @return void
+     */
+    public function sort(string $column): void
     {
-        $this->sortDir = $this->sortBy === $column
-            ? ($this->sortDir === 'asc' ? 'desc' : 'asc')
+        $this->sortDir = ($this->sortBy === $column && $this->sortDir === 'asc')
+            ? 'desc'
             : 'asc';
 
         $this->sortBy = $column;
-    }
-
-    public function openModal(): void
-    {
-        $this->resetForm();
-        $this->isModalOpen = true;
-    }
-
-
-    public function confirmDelete(Category $category)
-    {
-        $this->categoryDelete = $category;
-        $this->showModalDelete = true;
-    }
-
-    public function delete()
-    {
-        $this->categoryDelete->delete();
-        $this->categoryDelete = null;
-        $this->showModalDelete = false;
     }
 }

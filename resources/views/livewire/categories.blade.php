@@ -96,7 +96,7 @@
     </div>
 
 
-    <x-modal maxWidth="2xl" wire:model.live="isModalOpen" class="overflow-visible">
+    <x-modal maxWidth="2xl" wire:model.live="showModalForm" class="overflow-visible">
         <div class="px-6 py-4">
             <div class="text-lg font-medium text-gray-900">
                 Cadastrar categoria
@@ -121,8 +121,8 @@
                         name="parent_id"
                         label="Categoria parente"
                         wire:model="parent_id"
-                        :options="$options"
-                        :nameCategorySelected="$nameCategorySelected"
+                        :options="$parentCategoryOptions"
+                        :nameCategorySelected="$selectedParentName"
                     />
                     <div class="">@error('parent_id') {{ $message }} @enderror</div>
                 </div>
