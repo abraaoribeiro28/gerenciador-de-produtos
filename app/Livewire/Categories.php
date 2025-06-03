@@ -60,7 +60,7 @@ class Categories extends Component
 
     protected function resetForm(): void
     {
-        $this->reset(['categoryId', 'name', 'parent_id', 'slug', 'status', 'nameCategorySelected']);
+        $this->reset(['categoryId', 'name', 'parent_id', 'slug', 'status', 'nameCategorySelected', 'options', 'searchTerm']);
     }
 
     public function save()
@@ -83,6 +83,7 @@ class Categories extends Component
 
     public function edit(Category $category): void
     {
+        $this->resetForm();
         $this->categoryId = $category->id;
         $this->name = $category->name;
         $this->parent_id = $category->parent_id;
