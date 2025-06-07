@@ -55,7 +55,7 @@ class Category extends Model
      */
     public function scopeFilterBySearch($query, $search)
     {
-        $query->with('parent');
+        $query->with('parent')->where('categories.user_id', auth()->id());
 
         if (!$search) {
             return $query;
