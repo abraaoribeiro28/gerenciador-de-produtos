@@ -116,15 +116,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <x-searchable-select
-                        wire:key="{{ $categoryId ?? 'new' }}"
-                        name="parent_id"
-                        label="Categoria parente"
-                        wire:model="parent_id"
-                        :options="$parentCategoryOptions"
-                        :nameCategorySelected="$selectedParentName"
-                    />
-                    <div class="">@error('parent_id') {{ $message }} @enderror</div>
+                    <livewire:components.select-search label="Categoria parente" />
                 </div>
 
                 <x-switch-input model="status" label="Marque para ativar" />
