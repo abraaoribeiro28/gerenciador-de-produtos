@@ -12,7 +12,7 @@ class SelectSearch extends Component
     public array $data = [];
     public string $search = '';
     public string $label = '';
-    public string $placeholder = 'Select...';
+    public string $placeholder = 'Selecione...';
     public ?string $selectedName = null;
     public ?int $selectedId = null;
 
