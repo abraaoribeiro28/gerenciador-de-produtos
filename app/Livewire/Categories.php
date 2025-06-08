@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
@@ -27,11 +28,6 @@ class Categories extends Component
     public ?string $name = null;
     public ?string $slug = null;
     public ?string $parent_id = null;
-
-    // Parent category relation and selection
-    public array $parentCategoryOptions = [];
-    public ?string $selectedParentName = null;
-    public ?string $parentCategorySearch = null;
 
     // Identifiers for edit and delete actions
     public ?int $categoryId = null;
@@ -98,9 +94,10 @@ class Categories extends Component
     }
 
     /**
-     * Populate the form with the selected category data for editing.
+     * Populates the form with data from the selected category for editing.
+     * Also triggers a modal and dispatches the 'set-property' event to update reactive components.
      *
-     * @param Category $category
+     * @param  Category  $category
      * @return void
      */
     public function edit(Category $category): void
@@ -119,6 +116,11 @@ class Categories extends Component
             ->toArray();
 
         $this->showModalForm = true;
+
+        $this->dispatch('set-property', [
+            'id' => $category->id,
+            'name' => $category->parent?->name,
+        ]);
     }
 
     /**
@@ -141,7 +143,8 @@ class Categories extends Component
     }
 
     /**
-     * Reset all category form-related fields to their default values.
+     * Resets all category form-related fields to their default values
+     * and dispatches the 'reset-form' event to notify dependent components.
      *
      * @return void
      */
@@ -153,10 +156,9 @@ class Categories extends Component
             'status',
             'parent_id',
             'categoryId',
-            'selectedParentName',
-            'parentCategoryOptions',
-            'parentCategorySearch'
         ]);
+
+        $this->dispatch('reset-form');
     }
 
     /**
@@ -209,6 +211,36 @@ class Categories extends Component
         } else {
             $this->parentCategoryOptions = [];
         }
+    }
+
+    /**
+     * Handles the 'searching' event by querying categories that match the search string.
+     * Sends back up to 10 results to the component via 'search-response' event.
+     *
+     * @param string $search The search term typed by the user
+     * @return void
+     */
+    #[On('searching')]
+    public function searchCategory(string $search): void
+    {
+        $categories = Category::where('name', 'like', "%{$search}%")
+            ->limit(10)
+            ->pluck('name', 'id')
+            ->toArray();
+
+        $this->dispatch('search-response', $categories);
+    }
+
+    /**
+     * Handles the 'selected' event to set the selected parent category ID.
+     *
+     * @param array{id: int, name: string} $data The selected category data
+     * @return void
+     */
+    #[On('selected')]
+    public function selectedParenteCategory(array $data): void
+    {
+        $this->parent_id = $data['id'];
     }
 
     /**
