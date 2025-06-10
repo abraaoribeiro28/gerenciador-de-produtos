@@ -100,6 +100,33 @@ class Products extends Component
     }
 
     /**
+     * Populates the form with data from the selected product for editing.
+     * Also triggers a modal and dispatches the 'set-property' event to update reactive components.
+     *
+     * @param  Product $product
+     * @return void
+     */
+    public function edit(Product $product): void
+    {
+        $this->resetForm();
+        $this->name = $product->name;
+        $this->slug = $product->slug;
+        $this->price = 'R$ ' . number_format((float) $product->price, 2, ',', '.');
+        $this->stock = $product->stock;
+        $this->productId = $product->id;
+        $this->status = $product->status;
+        $this->description = $product->description;
+        $this->category_id = $product->category_id;
+
+        $this->showModalForm = true;
+
+        $this->dispatch('set-property', [
+            'id' => $product->category_id,
+            'name' => $product->category?->name,
+        ]);
+    }
+
+    /**
      * Validate and save the product.
      * Creates a new record or updates the existing one based on productId.
      *

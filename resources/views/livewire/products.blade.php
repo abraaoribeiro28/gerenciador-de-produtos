@@ -77,7 +77,7 @@
                         {{ $product->category->name ?? '' }}
                     </td>
                     <td class="px-6 py-4">
-                        R${{ number_format((float) $product->price, 2, ',', '.') }}
+                        R$ {{ number_format((float) $product->price, 2, ',', '.') }}
                     </td>
                     <td class="px-6 py-4">
                         {{ $product->stock ?? 'Sem estoque' }}
