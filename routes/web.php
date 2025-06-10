@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ArchiveController;
 
 Route::get('/', function(){
@@ -15,26 +13,19 @@ Route::get('dashboard', function(){
 
 
 Route::prefix('dashboard')->middleware('auth')->group(function(){
-    // Products
-    Route::prefix('products')->middleware('auth')->group(function(){
-        Route::get('/', [ProductController::class, 'index'])->name('products');
-        Route::get('category/{id}', [ProductController::class, 'index'])->name('products.filter');
-        Route::get('create', [ProductController::class, 'create'])->name('products.create');
-        Route::post('create', [ProductController::class, 'store'])->name('products.store');
-    });
-    Route::prefix('product')->group(function(){
-        Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit')->middleware('auth');
-        Route::put('edit/{id}', [ProductController::class, 'update'])->name('product.update')->middleware('auth');
-        Route::get('{id}', [ProductController::class, 'show'])->name('product.show')->middleware('auth');
-        Route::delete('delete/{id}', [ProductController::class, 'delete'])->name('product.delete')->middleware('auth');
-    });
-
     /*
      * Categorias
      */
     Route::get('categorias', static function () {
         return view('admin.categories.index');
     })->name('categorias.index');
+
+    /*
+     * Produtos
+     */
+    Route::get('produtos', static function () {
+       return view('admin.products.index');
+    })->name('produtos.index');
 
     // Archives
     Route::get('/archives', [ArchiveController::class, 'index'])->name('archives.index')->middleware('auth');
