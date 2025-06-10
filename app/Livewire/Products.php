@@ -22,6 +22,7 @@ class Products extends Component
 
     // Modal visibility control
     public bool $showModalForm = false;
+    public bool $showModalDelete = false;
 
     // Form data
     public bool $status = true;
@@ -34,6 +35,7 @@ class Products extends Component
 
     // Identifiers for edit and delete actions
     public ?int $productId = null;
+    public ?Product $productToDelete = null;
 
     /**
      * Render the Livewire component view with filtered products
@@ -166,6 +168,30 @@ class Products extends Component
         ]);
 
         $this->dispatch('reset-form');
+    }
+
+    /**
+     * Prepare and open the delete confirmation modal for the selected category.
+     *
+     * @param Product $product
+     * @return void
+     */
+    public function confirmDelete(Product $product): void
+    {
+        $this->productToDelete = $product;
+        $this->showModalDelete = true;
+    }
+
+    /**
+     * Delete the selected category and close the confirmation modal.
+     *
+     * @return void
+     */
+    public function delete(): void
+    {
+        $this->productToDelete->delete();
+        $this->productToDelete = null;
+        $this->showModalDelete = false;
     }
 
     /**

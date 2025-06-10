@@ -170,6 +170,32 @@
             </x-button>
         </div>
     </x-modal>
+
+    <x-modal maxWidth="2xl" wire:model.live="showModalDelete" class="overflow-visible">
+        <div class="px-6 py-4">
+            <div class="text-lg font-medium text-gray-900">
+                Confirmar Exclusão
+            </div>
+
+            <div class="mt-4 text-sm text-gray-600 space-y-4">
+                <p>Tem certeza de que deseja excluir este produto?</p>
+
+                <div class="bg-red-100 text-red-700 p-3 rounded-md border border-red-300 text-sm">
+                    Atenção: Esta operação é irreversível.
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-row justify-end gap-3 px-6 py-4 bg-gray-100 text-end rounded-b-lg">
+            <x-button wire:click="$set('showModalDelete', false)" class="bg-gray-600 hover:bg-gray-700">
+                Cancelar
+            </x-button>
+
+            <x-button wire:click="delete" class="bg-red-700 hover:bg-red-800">
+                Confirmar Exclusão
+            </x-button>
+        </div>
+    </x-modal>
 </div>
 
 <script>
