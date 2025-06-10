@@ -119,6 +119,10 @@ class Category extends Model
             $category->children()->each(function ($child) {
                 $child->delete();
             });
+
+            $category->products()->each(function ($product) {
+                $product->delete();
+            });
         });
     }
 }

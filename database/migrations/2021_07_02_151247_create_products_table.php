@@ -20,6 +20,8 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->unsignedInteger('stock');
+            $table->boolean('status')->default(true);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 
