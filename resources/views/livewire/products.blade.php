@@ -160,6 +160,54 @@
                     @enderror
                 </div>
 
+                <div class="mb-4 w-full">
+                    <x-label class="mb-1">Imagens do produto</x-label>
+                    <label for="productImages" class="flex flex-col items-center justify-center w-full p-4 text-center border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cloud-arrow-up-fill" viewBox="0 0 16 16">
+                            <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        <p class="mt-2 text-sm text-gray-600">Arraste e solte ou clique para selecionar</p>
+                        <p class="text-xs text-gray-500">JPG, PNG ou WEBP — até 2 MB (máx. 5 arquivos)</p>
+                        <input id="productImages" type="file" class="hidden" wire:model.live="images" accept="image/*" multiple>
+                    </label>
+                    <div class="text-red-500 mt-1">
+                        @error('images')
+                            {{ $message }}
+                        @enderror
+                        @error('images.*')
+                            {{ $message }}
+                        @enderror
+                    </div>
+
+                    @if($images)
+                        <div class="mt-3 flex flex-wrap gap-3">
+                            @foreach($images as $index => $image)
+                                <div wire:key="image-preview-{{ $index }}" class="relative w-24 h-24 rounded-lg overflow-hidden border shadow-sm">
+                                    <img src="{{ $image->temporaryUrl() }}" alt="Pré-visualização da imagem" class="object-cover w-full h-full">
+                                    <button type="button" wire:click="removeImage({{ $index }})" class="absolute top-1 right-1 bg-white/80 rounded-full p-1 shadow hover:text-red-600">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if($existingImages)
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-700 mb-2">Imagens atuais</p>
+                            <div class="flex flex-wrap gap-3">
+                                @foreach($existingImages as $stored)
+                                    <div wire:key="image-stored-{{ $stored['id'] ?? $loop->index }}" class="w-24 h-24 rounded-lg overflow-hidden border shadow-sm">
+                                        <img src="{{ $stored['url'] ?? '' }}" alt="{{ $stored['name'] ?? 'Imagem do produto' }}" class="object-cover w-full h-full">
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
                 <x-switch-input model="status" label="Marque para ativar" />
             </div>
         </div>
