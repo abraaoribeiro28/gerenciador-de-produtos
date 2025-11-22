@@ -58,7 +58,7 @@
                         </div>
                         <a href="{{ route('produtos.index') }}" class="text-sm text-indigo-600 hover:text-indigo-800">Ver todos</a>
                     </div>
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto hidden md:block">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -83,6 +83,23 @@
                                 @endforelse
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="md:hidden px-6 py-4">
+                        <div class="space-y-4 divide-y divide-gray-100">
+                            @forelse($recentProducts as $product)
+                                <div class="pt-4 first:pt-0">
+                                    <p class="text-base font-semibold text-gray-900">{{ $product->name }}</p>
+                                    <p class="text-sm text-gray-500">{{ $product->category->name ?? 'Sem categoria' }}</p>
+                                    <div class="mt-2 flex flex-wrap text-sm text-gray-700 gap-3">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">R$ {{ number_format((float) $product->price, 2, ',', '.') }}</span>
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full bg-gray-100 text-gray-800">Estoque: {{ $product->stock }}</span>
+                                    </div>
+                                </div>
+                            @empty
+                                <p class="text-center text-sm text-gray-500 py-2">Nenhum produto cadastrado ainda.</p>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
 

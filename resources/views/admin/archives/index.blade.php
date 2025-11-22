@@ -18,9 +18,12 @@
         @foreach ($archives as $archive)
         <div class="card-img mb-4">
           <div class="box-img">
-            <img src="/images/products/{{$archive->archive}}">
+            @php
+                $imagePath = $archive->path ?? '/images/products/'.$archive->archive;
+            @endphp
+            <img src="{{ $imagePath }}" alt="{{ $archive->filename ?? $archive->archive }}">
           </div>
-          <span class="name-img pt-3 d-block" style="white-space: nowrap;">{{$archive->archive}}</span>
+          <span class="name-img pt-3 d-block" style="white-space: nowrap;">{{$archive->filename ?? $archive->archive}}</span>
           <button class="btn btn-danger btn-exlcuir-archive" onclick="exibirModal({{$archive->id}}, '#modalDelete', '/admin/archive/delete/')">Excluir</button>
         </div>
         @endforeach
