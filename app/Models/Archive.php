@@ -13,6 +13,7 @@ class Archive extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'archive',
         'filename',
         'extension',
         'path',

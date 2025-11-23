@@ -5,15 +5,19 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Archive;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 
 class Products extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
     // Search and sorting
     public ?string $search = null;
@@ -32,6 +36,8 @@ class Products extends Component
     public ?int $stock = 0;
     public ?string $description = null;
     public ?int $category_id = null;
+    public array $images = [];
+    public array $existingImages = [];
 
     // Identifiers for edit and delete actions
     public ?int $productId = null;
@@ -68,6 +74,8 @@ class Products extends Component
             'stock' => ['required'],
             'status' => ['boolean'],
             'description' => ['max:999'],
+            'images' => ['nullable', 'array', 'max:5'],
+            'images.*' => ['image', 'max:2048'],
         ];
     }
 
@@ -87,6 +95,9 @@ class Products extends Component
             'category_id.exists' => 'A categoria selecionada não existe na base de dados.',
             'slug.unique' => 'O campo nome já existe.',
             'description.max' => 'O campo nome não deve ter mais de 255 caracteres.',
+            'images.max' => 'Você pode enviar no máximo 5 imagens por produto.',
+            'images.*.image' => 'Cada arquivo precisa ser uma imagem.',
+            'images.*.max' => 'Cada imagem deve ter no máximo 2 MB.',
         ];
     }
 
@@ -119,6 +130,19 @@ class Products extends Component
         $this->status = $product->status;
         $this->description = $product->description;
         $this->category_id = $product->category_id;
+        $product->loadMissing('archives');
+        $this->existingImages = $product->archives->map(function (Archive $archive) {
+            $fallbackPath = "/images/products/{$archive->archive}";
+            $storagePath = "products/{$archive->archive}";
+            $url = $archive->path
+                ?: (Storage::disk('public')->exists($storagePath) ? Storage::url($storagePath) : $fallbackPath);
+
+            return [
+                'id' => $archive->id,
+                'url' => $url,
+                'name' => $archive->filename ?? $archive->archive,
+            ];
+        })->toArray();
 
         $this->showModalForm = true;
 
@@ -138,15 +162,51 @@ class Products extends Component
     {
         $validated = $this->validate();
 
+        unset($validated['images']);
         $validated['price'] = $this->sanitizePrice($validated['price']);
 
-        Product::updateOrCreate(
+        $product = Product::updateOrCreate(
             ['id' => $this->productId],
             [...$validated, 'user_id' => auth()->id()]
         );
 
+        $this->persistImages($product);
+
         $this->resetForm();
         $this->showModalForm = false;
+    }
+
+    /**
+     * Save uploaded images and link them to the product.
+     *
+     * @param Product $product
+     * @return void
+     */
+    private function persistImages(Product $product): void
+    {
+        if (empty($this->images)) {
+            return;
+        }
+
+        $archiveIds = [];
+
+        foreach ($this->images as $image) {
+            $fileName = Str::uuid()->toString() . '.' . $image->getClientOriginalExtension();
+            $storedPath = $image->storeAs('products', $fileName, 'public');
+
+            $archive = new Archive();
+            $archive->filename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $archive->extension = $image->getClientOriginalExtension();
+            $archive->archive = $fileName;
+            $archive->path = Storage::url($storedPath);
+            $archive->save();
+
+            $archiveIds[] = $archive->id;
+        }
+
+        if ($archiveIds) {
+            $product->archives()->syncWithoutDetaching($archiveIds);
+        }
     }
 
     /**
@@ -164,10 +224,24 @@ class Products extends Component
             'status',
             'description',
             'category_id',
-            'productId'
+            'productId',
+            'images',
+            'existingImages',
         ]);
 
         $this->dispatch('reset-form');
+    }
+
+    /**
+     * Remove a single image from the upload queue.
+     *
+     * @param int $index
+     * @return void
+     */
+    public function removeImage(int $index): void
+    {
+        unset($this->images[$index]);
+        $this->images = array_values($this->images);
     }
 
     /**
