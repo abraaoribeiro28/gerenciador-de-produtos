@@ -96,10 +96,11 @@
     </div>
 
 
-    <x-modal maxWidth="2xl" wire:model.live="showModalForm" class="overflow-visible">
+    <x-modal maxWidth="lg" wire:model.live="showModalForm" class="overflow-visible">
         <div class="px-6 py-4">
-            <div class="text-lg font-medium text-gray-900">
-                Cadastrar categoria
+            <div class="pb-3 bg-white border-b border-zinc-200">
+                <h2 class="font-medium text-zinc-800 text-base mb-2">Cadastrar categoria</h2>
+                <p class="text-sm text-zinc-500">Preencha os campos abaixo para registrar uma categoria.</p>
             </div>
 
             <div class="mt-4 text-sm text-gray-600">
@@ -130,7 +131,7 @@
         </div>
     </x-modal>
 
-    <x-modal maxWidth="2xl" wire:model.live="showModalDelete" class="overflow-visible">
+    <x-modal maxWidth="lg" wire:model.live="showModalDelete" class="overflow-visible">
         <div class="px-6 py-4">
             <div class="text-lg font-medium text-gray-900">
                 Confirmar Exclusão
